@@ -1,0 +1,14 @@
+Package: CoMM
+Type: Package
+Title: Collaborative Mixed Model (CoMM)
+Version: 0.1.0
+Author: Jin Liu
+Maintainer: Jin Liu <jin.liu@duke-nus.edu.sg>
+Description: This package provides functions for fitting MoMM.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Imports: Rcpp (>= 0.12.10)
+LinkingTo: Rcpp,RcppArmadillo,BH,survey,RcppEigen,bigmemory
+NeedsCompilation: yes
+URL:https://github.com/gordonliu810822/CoMM

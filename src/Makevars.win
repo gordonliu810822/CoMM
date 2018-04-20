@@ -1,0 +1,9 @@
+#PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) 
+#CXX_STD = CXX11
+## We need the headers exported via inst/include
+#PKG_CXXFLAGS=-I../inst/include -DARMA_64BIT_WORD
+PKG_CXXFLAGS=-I../inst/include -DARMA_64BIT_WORD -fopenmp
+
+PKG_LIBS =$(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) -fopenmp
+
+CXX_STD = CXX11
