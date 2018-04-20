@@ -1,6 +1,6 @@
 CoMM
 ===
-_Co_[llaborative]
+__Co__{llaborative}
 
 Installation 
 ===========
