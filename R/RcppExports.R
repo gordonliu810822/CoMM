@@ -61,24 +61,8 @@ CoMM_testing_run <- function(stringname1, stringname2, stringname3, stringname4,
     .Call('_CoMM_CoMM_testing_run', PACKAGE = 'CoMM', stringname1, stringname2, stringname3, stringname4, stringname5, whCol, bw)
 }
 
-covar_pxem_2ndstage <- function(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik, maxIter) {
-    .Call('_CoMM_covar_pxem_2ndstage', PACKAGE = 'CoMM', y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik, maxIter)
-}
-
-getCovarFile <- function(filename, delimiter, ncols, nrows) {
-    .Call('_CoMM_getCovarFile', PACKAGE = 'CoMM', filename, delimiter, ncols, nrows)
-}
-
-dataLoader <- function(stringname1, stringname2, stringname3, stringname4, stringname5, whCol) {
-    .Call('_CoMM_dataLoader', PACKAGE = 'CoMM', stringname1, stringname2, stringname3, stringname4, stringname5, whCol)
-}
-
 lmm_pxem <- function(y, w, x, maxIter) {
     .Call('_CoMM_lmm_pxem', PACKAGE = 'CoMM', y, w, x, maxIter)
-}
-
-loadplink <- function(stringname) {
-    invisible(.Call('_CoMM_loadplink', PACKAGE = 'CoMM', stringname))
 }
 
 ReadPlinkFamFile2 <- function(stringname, FID, IID, pheno, nrows, whCol) {

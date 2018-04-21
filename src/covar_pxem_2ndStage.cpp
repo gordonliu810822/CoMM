@@ -9,7 +9,6 @@ using namespace Rcpp;
 using namespace arma;
 using namespace std;
 
-// [[Rcpp::export]]
 List covar_pxem_2ndstage(arma::vec y, arma::vec z, arma::mat x1,  arma::mat x2,  arma::mat w1,  arma::mat w2, double sigma2beta,
 					 double sigma2y, arma::vec beta0, int constr, double epsStopLogLik, int maxIter){
 	int n1 = y.n_elem, n2 = z.n_elem, p1 = x1.n_cols, p2 = x2.n_cols; //q1 = w1.n_cols, q2 = w2.n_cols;

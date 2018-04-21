@@ -71,7 +71,6 @@ CharacterVector charv_subset2(CharacterVector x, uvec idx){
 }
 
 // format of covariate file is "FID IID, covar1, covar2, covar3 ..."
-// [[Rcpp::export]]
 Rcpp::List getCovarFile(std::string filename, char delimiter, int ncols, int nrows){
   std::ifstream myfile (filename.c_str());
   mat covar(nrows, ncols-2);
@@ -117,8 +116,6 @@ Rcpp::List getCovarFile(std::string filename, char delimiter, int ncols, int nro
 }
 
 
-
-// [[Rcpp::export]]
 Rcpp::List dataLoader(std::string stringname1, std::string stringname2, std::string stringname3, 
 	std::string stringname4, std::string stringname5, int whCol){
 	//match SNPs in file 1 and file 2 GWAS (common SNPs in x1 and x2 in columns)

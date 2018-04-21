@@ -8,7 +8,6 @@ using namespace std;
 using namespace Rcpp;
 using namespace arma;
 
-// [[Rcpp::export]]
 void loadplink(std::string stringname) {
   string famfile = stringname;
   famfile += ".fam";

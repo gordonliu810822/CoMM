@@ -46,58 +46,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// covar_pxem_2ndstage
-List covar_pxem_2ndstage(arma::vec y, arma::vec z, arma::mat x1, arma::mat x2, arma::mat w1, arma::mat w2, double sigma2beta, double sigma2y, arma::vec beta0, int constr, double epsStopLogLik, int maxIter);
-RcppExport SEXP _CoMM_covar_pxem_2ndstage(SEXP ySEXP, SEXP zSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP w1SEXP, SEXP w2SEXP, SEXP sigma2betaSEXP, SEXP sigma2ySEXP, SEXP beta0SEXP, SEXP constrSEXP, SEXP epsStopLogLikSEXP, SEXP maxIterSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type z(zSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type x1(x1SEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type x2(x2SEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type w1(w1SEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type w2(w2SEXP);
-    Rcpp::traits::input_parameter< double >::type sigma2beta(sigma2betaSEXP);
-    Rcpp::traits::input_parameter< double >::type sigma2y(sigma2ySEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type beta0(beta0SEXP);
-    Rcpp::traits::input_parameter< int >::type constr(constrSEXP);
-    Rcpp::traits::input_parameter< double >::type epsStopLogLik(epsStopLogLikSEXP);
-    Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
-    rcpp_result_gen = Rcpp::wrap(covar_pxem_2ndstage(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik, maxIter));
-    return rcpp_result_gen;
-END_RCPP
-}
-// getCovarFile
-Rcpp::List getCovarFile(std::string filename, char delimiter, int ncols, int nrows);
-RcppExport SEXP _CoMM_getCovarFile(SEXP filenameSEXP, SEXP delimiterSEXP, SEXP ncolsSEXP, SEXP nrowsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type filename(filenameSEXP);
-    Rcpp::traits::input_parameter< char >::type delimiter(delimiterSEXP);
-    Rcpp::traits::input_parameter< int >::type ncols(ncolsSEXP);
-    Rcpp::traits::input_parameter< int >::type nrows(nrowsSEXP);
-    rcpp_result_gen = Rcpp::wrap(getCovarFile(filename, delimiter, ncols, nrows));
-    return rcpp_result_gen;
-END_RCPP
-}
-// dataLoader
-Rcpp::List dataLoader(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4, std::string stringname5, int whCol);
-RcppExport SEXP _CoMM_dataLoader(SEXP stringname1SEXP, SEXP stringname2SEXP, SEXP stringname3SEXP, SEXP stringname4SEXP, SEXP stringname5SEXP, SEXP whColSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type stringname1(stringname1SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname2(stringname2SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname3(stringname3SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname4(stringname4SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname5(stringname5SEXP);
-    Rcpp::traits::input_parameter< int >::type whCol(whColSEXP);
-    rcpp_result_gen = Rcpp::wrap(dataLoader(stringname1, stringname2, stringname3, stringname4, stringname5, whCol));
-    return rcpp_result_gen;
-END_RCPP
-}
 // lmm_pxem
 List lmm_pxem(arma::vec y, arma::mat w, arma::mat x, int maxIter);
 RcppExport SEXP _CoMM_lmm_pxem(SEXP ySEXP, SEXP wSEXP, SEXP xSEXP, SEXP maxIterSEXP) {
@@ -110,16 +58,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
     rcpp_result_gen = Rcpp::wrap(lmm_pxem(y, w, x, maxIter));
     return rcpp_result_gen;
-END_RCPP
-}
-// loadplink
-void loadplink(std::string stringname);
-RcppExport SEXP _CoMM_loadplink(SEXP stringnameSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type stringname(stringnameSEXP);
-    loadplink(stringname);
-    return R_NilValue;
 END_RCPP
 }
 // ReadPlinkFamFile2
@@ -141,11 +79,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_CoMM_CoMM_covar_pxem", (DL_FUNC) &_CoMM_CoMM_covar_pxem, 12},
     {"_CoMM_CoMM_testing_run", (DL_FUNC) &_CoMM_CoMM_testing_run, 7},
-    {"_CoMM_covar_pxem_2ndstage", (DL_FUNC) &_CoMM_covar_pxem_2ndstage, 12},
-    {"_CoMM_getCovarFile", (DL_FUNC) &_CoMM_getCovarFile, 4},
-    {"_CoMM_dataLoader", (DL_FUNC) &_CoMM_dataLoader, 6},
     {"_CoMM_lmm_pxem", (DL_FUNC) &_CoMM_lmm_pxem, 4},
-    {"_CoMM_loadplink", (DL_FUNC) &_CoMM_loadplink, 1},
     {"_CoMM_ReadPlinkFamFile2", (DL_FUNC) &_CoMM_ReadPlinkFamFile2, 6},
     {NULL, NULL, 0}
 };
