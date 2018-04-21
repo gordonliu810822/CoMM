@@ -1,6 +1,6 @@
 CoMM
 ===
-Collaborative
+Collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information.
 
 Installation 
 ===========
