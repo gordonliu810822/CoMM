@@ -1,0 +1,71 @@
+cd /home/projects/11000369/Work/AUDI/sim
+h2yA="1 2 3 4 5"
+bpropA="1 2 3 4 5 6"
+h2A="1 2 3"
+#n2A="1 2"
+   
+    for h2y in $h2yA
+    do
+	cp simulation.R tmp1.R	
+        sed -e "s/j in 1/j in ${h2y}/g" tmp1.R > tmp2.R
+        for beta_prop in $bpropA
+        do
+            sed -e "s/k in 1/k in ${beta_prop}/g" tmp2.R > tmp3.R
+            for h2 in $h2A
+            do
+                sed -e "s/l in 1/l in ${h2}/g" tmp3.R > sim_j${h2y}_k${beta_prop}_l${h2}.R
+            done
+        done
+    done
+
+
+
+### type 1 error
+cd /home/projects/11000369/Work/AUDI/sim
+#bpropA="1 2 3"
+#n2A="1 2"
+h2yA="1 2 3 4 5"
+n2A="1 2"
+bpropA="1 2 3 4 5 6"
+
+for h2y in $h2yA
+do
+    cp simulation_t1e.R tmp1.R	
+    sed -e "s/j in 1/j in ${h2y}/g" tmp1.R > tmp2.R
+    for beta_prop in $bpropA
+    do
+        sed -e "s/k in 1/k in ${beta_prop}/g" tmp2.R > tmp3.R
+        for n2 in $n2A
+        do
+            sed -e "s/nn in 1/nn in ${n2}/g" tmp3.R > sim_t1e_j${h2y}_k${beta_prop}_n${n2}.R
+        done
+    done
+done
+
+
+
+#######simulation2.R##########
+
+cd /home/projects/11000369/Work/AUDI/sim
+#h2yA=seq 1 1 20
+#bpropA="1 2 3 4 5 6"
+#h2A="1 2 3"
+#n2A="1 2"
+   
+    for h2y in $(seq 1 1 20)
+    do
+	cp simulation2.R tmp1.R	
+        sed -e "s/j in 1/j in ${h2y}/g" tmp1.R > tmp2.R
+        for beta_prop in $(seq 1 1 3)
+        do
+            sed -e "s/k in 1/k in ${beta_prop}/g" tmp2.R > tmp3.R
+            for h2 in $(seq 1 1 3)
+            do
+                sed -e "s/l in 1/l in ${h2}/g" tmp3.R > sim2_j${h2y}_k${beta_prop}_l${h2}.R
+            done
+        done
+    done
+
+
+
+ 
