@@ -74,48 +74,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
 <p>This vignette provides an introduction to the <code>CoMM' package. R package</code>CoMM’ implements CoMM, a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information. The package can be installed with the command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
 <span class="kw">install_github</span>(<span class="st">&quot;gordonliu810822/CoMM&quot;</span>)
 <span class="co">#&gt; Downloading GitHub repo gordonliu810822/CoMM@master</span>
 <span class="co">#&gt; from URL https://api.github.com/repos/gordonliu810822/CoMM/zipball/master</span>
 <span class="co">#&gt; Installing CoMM</span>
-<span class="co">#&gt; Installing RcppEigen</span>
 <span class="co">#&gt; '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \</span>
 <span class="co">#&gt;   --no-environ --no-save --no-restore --quiet CMD INSTALL  \</span>
-<span class="co">#&gt;   '/private/var/folders/bx/zflt48kd2nq1qnkx3ps8stv00000gn/T/RtmpDDnVR3/devtoolsf7ed5c372898/RcppEigen'  \</span>
-<span class="co">#&gt;   --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'  \</span>
-<span class="co">#&gt;   --install-tests</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Installing survey</span>
-<span class="co">#&gt; '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \</span>
-<span class="co">#&gt;   --no-environ --no-save --no-restore --quiet CMD INSTALL  \</span>
-<span class="co">#&gt;   '/private/var/folders/bx/zflt48kd2nq1qnkx3ps8stv00000gn/T/RtmpDDnVR3/devtoolsf7ed45d3aad/survey'  \</span>
-<span class="co">#&gt;   --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'  \</span>
-<span class="co">#&gt;   --install-tests</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Reloading installed survey</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'survey'</span>
-<span class="co">#&gt; The following object is masked from 'package:graphics':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     dotchart</span>
-<span class="co">#&gt; '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \</span>
-<span class="co">#&gt;   --no-environ --no-save --no-restore --quiet CMD INSTALL  \</span>
-<span class="co">#&gt;   '/private/var/folders/bx/zflt48kd2nq1qnkx3ps8stv00000gn/T/RtmpDDnVR3/devtoolsf7ede7ec6dc/gordonliu810822-CoMM-c3a44ca'  \</span>
+<span class="co">#&gt;   '/private/var/folders/bx/zflt48kd2nq1qnkx3ps8stv00000gn/T/RtmpWoFDja/devtoolsfda61a6a13e6/gordonliu810822-CoMM-4e9fa92'  \</span>
 <span class="co">#&gt;   --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'  \</span>
 <span class="co">#&gt;   --install-tests</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Reloading installed CoMM</span></code></pre></div>
 <p>The package can be loaded with the command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;REMI&quot;</span>)
-<span class="co">#&gt; Loading required package: foreach</span></code></pre></div>
-<div id="vignette-info" class="section level2">
-<h2>Vignette Info</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;CoMM&quot;</span>)</code></pre></div>
+</div>
+<div id="fit-comm-using-simulated-data" class="section level3">
+<h3>Fit CoMM using simulated data</h3>
+<p>We first generate genotype data using function ‘genRawGeno’: ‘’’{r} L = 1; M = 100; n1 = 350; n2 = 5000; maf = runif(M,0.05,0.5) X = genRawGeno(maf, L, M, rho, n1 + n2); ‘’’</p>
 <p>Note the various macros within the <code>vignette</code> section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the <code>title</code> field and the <code>\VignetteIndexEntry</code> to match the title of your vignette.</p>
 </div>
-<div id="styles" class="section level2">
-<h2>Styles</h2>
+<div id="fit-comm-using-gwas-and-eqtl-data" class="section level2">
+<h2>Fit CoMM using GWAS and eQTL data</h2>
 <p>The <code>html_vignette</code> template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:</p>
 <pre><code>output: 
   rmarkdown::html_vignette:
