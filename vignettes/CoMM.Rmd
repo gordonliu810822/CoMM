@@ -19,10 +19,10 @@ knitr::opts_chunk$set(
 ### Introduction
 This vignette provides an introduction to the `CoMM` package. R package `CoMM` implements CoMM, a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information.
 The package can be installed with the command:
-```{r}
-library(devtools)
-install_github("gordonliu810822/CoMM")
-```
+
+`library(devtools)`
+`install_github("gordonliu810822/CoMM")`
+
 The package can be loaded with the command:
 ```{r}
 library("CoMM")
@@ -102,7 +102,7 @@ pval = pchisq(tstat,1,lower.tail=F)
 alpha_hat = fmHa$alpha 
 ```
 
-## Fit CoMM using GWAS and eQTL data
+### Fit CoMM using GWAS and eQTL data
 
 The example of running CoMM using GWAS and eQTL data in plink binary format
 ```{r}
@@ -114,7 +114,10 @@ file5 = "pc5_NFBC_filter_mph10.txt";
 whichPheno = 1;
 bw = 500000;
 ```
-Here, file1 is the prefix for eQTL genotype data in plink binary format, file2 is the GWAS data in plink binary format, file3 is the gene expression file with extended name, file4 and file5 are covariates file for eQTL and GWAS data, respectively. Then run `fm = AUDI_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);` . For gene expresion file, 
+Here, file1 is the prefix for eQTL genotype data in plink binary format, file2 is the GWAS data in plink binary format, file3 is the gene expression file with extended name, file4 and file5 are covariates file for eQTL and GWAS data, respectively. Then run `fm = AUDI_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);` . For gene expresion file, it must have the following format (rows for genes and columns for individuais):
+```{r, echo=FALSE, results='asis'}
+knitr::kable(ge[,1:8])
+```
 
 
 The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
@@ -123,32 +126,40 @@ The `html_vignette` template includes a basic CSS theme. To override this theme 
       rmarkdown::html_vignette:
         css: mystyles.css
 
-## Figures
+### Figures
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+The following data and codes are used to produce one of the figures in the Yang et al. (2018).
 
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r, fig.width=7, fig.height=4, echo=FALSE}
+dat_rej = dat[[3]];
+dat_rej$h2z=paste("",dat_rej$h2,sep="")
+dat_rej$Power = dat_rej$rej_prop
+dat_rej$Sparsity = dat_rej$beta_prop
+dat_rej$sd_rej = as.numeric(as.character(dat_rej$sd_rej))
+dat_rej = dat_rej[dat_rej$Method!="2-stage:AUDI",]
+library(plyr)
+dat_rej$Method=revalue(dat_rej$Method, c("AUDI"="CoMM"))
+dat_rej$Method=droplevels(dat_rej$Method)
+rho = 0.5; n2 = 8000;
+t1e_rej = dat_rej[dat_rej$RhoX==rho&dat_rej$n2==n2,]
+
+t1e_rej$h2z = factor(t1e_rej$h2z)
+t1e_rej$h2y = factor(t1e_rej$h2y)
+t1e_rej$Sparsity = factor(t1e_rej$Sparsity)
+t1e_rej$n2 = factor(t1e_rej$n2)
+t1e_rej$Method <- ordered(t1e_rej$Method, levels = c("CoMM","2-stage:Ridge","2-stage:Enet","SKAT"))
+t1e_rej$Power = as.numeric(as.character((t1e_rej$Power)))
+
+t1e_rej$h2y2 <- factor(t1e_rej$h2y, labels = c("h[C]^2==0.01", "h[C]^2==0.03", "h[C]^2==0.05", "h[C]^2==0.07", "h[C]^2==0.09"))
+t1e_rej$h2z2 <- factor(t1e_rej$h2z, labels = c("h[T]^2==0", "h[T]^2==0.001", "h[T]^2==0.002", "h[T]^2==0.003"))
+
+library(ggplot2)
+ggplot(t1e_rej, aes(x = Sparsity, y = Power,fill = Method))+
+geom_bar(stat="identity", position=position_dodge())+
+geom_errorbar(aes(ymin=Power-sd_rej, ymax=Power+sd_rej), width=.2,
+                 position=position_dodge(.9)) +
+facet_grid(h2z2~h2y2,labeller = label_parsed,scales = "free_y") + 
+geom_hline(yintercept=0.05,colour="orange",linetype="dashed")
+
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))

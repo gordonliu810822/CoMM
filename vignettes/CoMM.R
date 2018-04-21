@@ -5,10 +5,6 @@ knitr::opts_chunk$set(
 )
 
 ## ------------------------------------------------------------------------
-library(devtools)
-install_github("gordonliu810822/CoMM")
-
-## ------------------------------------------------------------------------
 library("CoMM")
 
 ## ------------------------------------------------------------------------
@@ -81,20 +77,38 @@ file5 = "pc5_NFBC_filter_mph10.txt";
 whichPheno = 1;
 bw = 500000;
 
-## ----table2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'----
-tabl <- "  # simple table creation here
-| Tables        | Are           | Cool  |
-|---------------|:-------------:|------:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-"
-cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
-
-## ---- fig.show='hold'----------------------------------------------------
-plot(1:10)
-plot(10:1)
-
 ## ---- echo=FALSE, results='asis'-----------------------------------------
-knitr::kable(head(mtcars, 10))
+knitr::kable(ge[,1:8])
+
+## ---- fig.width=7, fig.height=4, echo=FALSE------------------------------
+dat_rej = dat[[3]];
+dat_rej$h2z=paste("",dat_rej$h2,sep="")
+dat_rej$Power = dat_rej$rej_prop
+dat_rej$Sparsity = dat_rej$beta_prop
+dat_rej$sd_rej = as.numeric(as.character(dat_rej$sd_rej))
+dat_rej = dat_rej[dat_rej$Method!="2-stage:AUDI",]
+library(plyr)
+dat_rej$Method=revalue(dat_rej$Method, c("AUDI"="CoMM"))
+dat_rej$Method=droplevels(dat_rej$Method)
+rho = 0.5; n2 = 8000;
+t1e_rej = dat_rej[dat_rej$RhoX==rho&dat_rej$n2==n2,]
+
+t1e_rej$h2z = factor(t1e_rej$h2z)
+t1e_rej$h2y = factor(t1e_rej$h2y)
+t1e_rej$Sparsity = factor(t1e_rej$Sparsity)
+t1e_rej$n2 = factor(t1e_rej$n2)
+t1e_rej$Method <- ordered(t1e_rej$Method, levels = c("CoMM","2-stage:Ridge","2-stage:Enet","SKAT"))
+t1e_rej$Power = as.numeric(as.character((t1e_rej$Power)))
+
+t1e_rej$h2y2 <- factor(t1e_rej$h2y, labels = c("h[C]^2==0.01", "h[C]^2==0.03", "h[C]^2==0.05", "h[C]^2==0.07", "h[C]^2==0.09"))
+t1e_rej$h2z2 <- factor(t1e_rej$h2z, labels = c("h[T]^2==0", "h[T]^2==0.001", "h[T]^2==0.002", "h[T]^2==0.003"))
+
+library(ggplot2)
+ggplot(t1e_rej, aes(x = Sparsity, y = Power,fill = Method))+
+geom_bar(stat="identity", position=position_dodge())+
+geom_errorbar(aes(ymin=Power-sd_rej, ymax=Power+sd_rej), width=.2,
+                 position=position_dodge(.9)) +
+facet_grid(h2z2~h2y2,labeller = label_parsed,scales = "free_y") + 
+geom_hline(yintercept=0.05,colour="orange",linetype="dashed")
+
 
