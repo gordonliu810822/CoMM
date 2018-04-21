@@ -325,7 +325,6 @@ void ReadPlinkFamFile(std::string stringname, CharacterVector FID, CharacterVect
 	}
 }
 
-// [[Rcpp::export]]
 void ReadPlinkFamFile2(std::string stringname, CharacterVector FID, CharacterVector IID,
 	NumericVector pheno, int nrows, int whCol){
 
