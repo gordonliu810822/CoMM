@@ -45,9 +45,30 @@ double loglike_twas2(mat w1, mat w2, vec alpha0, vec beta0, mat x1x1t, mat x1x2t
 	return loglik;
 }
 
+//' @title
+//' CoMM
+//' @description
+//' fit CoMM for a single gene
+//'
+//' @param y  a vector for the expression of a gene.
+//' @param z  a vector for the phenotype of GWAS.
+//' @param X1  a standardized genotype matrix for eQTL data.
+//' @param X2  a standardized genotype matrix for GWAS data.
+//' @param w1  a matrix of coveriates for the expression of a gene.
+//' @param w2  a matrix of coveriates for the GWAS.
+//' @param sigma2beta  a initial value of sigma2beta.
+//' @param sigma2y  a initial value of sigma2y.
+//' @param beta0  a initial value of beta0.
+//' @param constr  indicator value for constraint. When constr = 1, alpha = 0, otherwise, alpha is free to vary.
+//' @param epsStopLogLik convergence criteria. default is 1e-5.
+//' @param maxIter maximum iteraion number. default is 1000.
+//'
+//' @return List of model parameters
+//'
+//' @export
 // [[Rcpp::export]]
-List AUDI_covar_pxem(arma::vec y, arma::vec z, arma::mat x1,  arma::mat x2,  arma::mat w1,  arma::mat w2, double sigma2beta,
-					 double sigma2y, arma::vec beta0, int constr, double epsStopLogLik, int maxIter){
+List CoMM_covar_pxem(arma::vec y, arma::vec z, arma::mat x1,  arma::mat x2,  arma::mat w1,  arma::mat w2, double sigma2beta,
+					 double sigma2y, arma::vec beta0, int constr, double epsStopLogLik=1e-5, int maxIter=1000){
 	int n1 = y.n_elem, n2 = z.n_elem, p1 = x1.n_cols, p2 = x2.n_cols; //q1 = w1.n_cols, q2 = w2.n_cols;
 	if (p1 != p2){
 		perror("The dimensions of x1 and x2 are not matched");

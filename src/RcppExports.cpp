@@ -7,9 +7,9 @@
 
 using namespace Rcpp;
 
-// AUDI_covar_pxem
-List AUDI_covar_pxem(arma::vec y, arma::vec z, arma::mat x1, arma::mat x2, arma::mat w1, arma::mat w2, double sigma2beta, double sigma2y, arma::vec beta0, int constr, double epsStopLogLik, int maxIter);
-RcppExport SEXP _CoMM_AUDI_covar_pxem(SEXP ySEXP, SEXP zSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP w1SEXP, SEXP w2SEXP, SEXP sigma2betaSEXP, SEXP sigma2ySEXP, SEXP beta0SEXP, SEXP constrSEXP, SEXP epsStopLogLikSEXP, SEXP maxIterSEXP) {
+// CoMM_covar_pxem
+List CoMM_covar_pxem(arma::vec y, arma::vec z, arma::mat x1, arma::mat x2, arma::mat w1, arma::mat w2, double sigma2beta, double sigma2y, arma::vec beta0, int constr, double epsStopLogLik, int maxIter);
+RcppExport SEXP _CoMM_CoMM_covar_pxem(SEXP ySEXP, SEXP zSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP w1SEXP, SEXP w2SEXP, SEXP sigma2betaSEXP, SEXP sigma2ySEXP, SEXP beta0SEXP, SEXP constrSEXP, SEXP epsStopLogLikSEXP, SEXP maxIterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -25,26 +25,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type constr(constrSEXP);
     Rcpp::traits::input_parameter< double >::type epsStopLogLik(epsStopLogLikSEXP);
     Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
-    rcpp_result_gen = Rcpp::wrap(AUDI_covar_pxem(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik, maxIter));
+    rcpp_result_gen = Rcpp::wrap(CoMM_covar_pxem(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik, maxIter));
     return rcpp_result_gen;
 END_RCPP
 }
-// mmhe
-Rcpp::List mmhe(arma::vec y, arma::mat X, arma::mat K);
-RcppExport SEXP _CoMM_mmhe(SEXP ySEXP, SEXP XSEXP, SEXP KSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type K(KSEXP);
-    rcpp_result_gen = Rcpp::wrap(mmhe(y, X, K));
-    return rcpp_result_gen;
-END_RCPP
-}
-// AUDI_h2_run
-Rcpp::List AUDI_h2_run(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4, std::string stringname5, int whCol, int bw);
-RcppExport SEXP _CoMM_AUDI_h2_run(SEXP stringname1SEXP, SEXP stringname2SEXP, SEXP stringname3SEXP, SEXP stringname4SEXP, SEXP stringname5SEXP, SEXP whColSEXP, SEXP bwSEXP) {
+// CoMM_testing_run
+Rcpp::List CoMM_testing_run(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4, std::string stringname5, int whCol, int bw);
+RcppExport SEXP _CoMM_CoMM_testing_run(SEXP stringname1SEXP, SEXP stringname2SEXP, SEXP stringname3SEXP, SEXP stringname4SEXP, SEXP stringname5SEXP, SEXP whColSEXP, SEXP bwSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -55,24 +42,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type stringname5(stringname5SEXP);
     Rcpp::traits::input_parameter< int >::type whCol(whColSEXP);
     Rcpp::traits::input_parameter< int >::type bw(bwSEXP);
-    rcpp_result_gen = Rcpp::wrap(AUDI_h2_run(stringname1, stringname2, stringname3, stringname4, stringname5, whCol, bw));
-    return rcpp_result_gen;
-END_RCPP
-}
-// AUDI_testing_run
-Rcpp::List AUDI_testing_run(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4, std::string stringname5, int whCol, int bw);
-RcppExport SEXP _CoMM_AUDI_testing_run(SEXP stringname1SEXP, SEXP stringname2SEXP, SEXP stringname3SEXP, SEXP stringname4SEXP, SEXP stringname5SEXP, SEXP whColSEXP, SEXP bwSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type stringname1(stringname1SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname2(stringname2SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname3(stringname3SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname4(stringname4SEXP);
-    Rcpp::traits::input_parameter< std::string >::type stringname5(stringname5SEXP);
-    Rcpp::traits::input_parameter< int >::type whCol(whColSEXP);
-    Rcpp::traits::input_parameter< int >::type bw(bwSEXP);
-    rcpp_result_gen = Rcpp::wrap(AUDI_testing_run(stringname1, stringname2, stringname3, stringname4, stringname5, whCol, bw));
+    rcpp_result_gen = Rcpp::wrap(CoMM_testing_run(stringname1, stringname2, stringname3, stringname4, stringname5, whCol, bw));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -169,10 +139,8 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_CoMM_AUDI_covar_pxem", (DL_FUNC) &_CoMM_AUDI_covar_pxem, 12},
-    {"_CoMM_mmhe", (DL_FUNC) &_CoMM_mmhe, 3},
-    {"_CoMM_AUDI_h2_run", (DL_FUNC) &_CoMM_AUDI_h2_run, 7},
-    {"_CoMM_AUDI_testing_run", (DL_FUNC) &_CoMM_AUDI_testing_run, 7},
+    {"_CoMM_CoMM_covar_pxem", (DL_FUNC) &_CoMM_CoMM_covar_pxem, 12},
+    {"_CoMM_CoMM_testing_run", (DL_FUNC) &_CoMM_CoMM_testing_run, 7},
     {"_CoMM_covar_pxem_2ndstage", (DL_FUNC) &_CoMM_covar_pxem_2ndstage, 12},
     {"_CoMM_getCovarFile", (DL_FUNC) &_CoMM_getCovarFile, 4},
     {"_CoMM_dataLoader", (DL_FUNC) &_CoMM_dataLoader, 6},

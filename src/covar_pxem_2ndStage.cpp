@@ -4,7 +4,7 @@
 //#include <omp.h>
 #include <math.h>
 
-#include "AUDI_covar_pxem.hpp"
+#include "CoMM_covar_pxem.hpp"
 using namespace Rcpp;
 using namespace arma;
 using namespace std;

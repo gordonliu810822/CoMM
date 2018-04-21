@@ -11,4 +11,8 @@ LazyData: true
 Imports: Rcpp (>= 0.12.10)
 LinkingTo: Rcpp,RcppArmadillo,BH,survey,RcppEigen,bigmemory
 NeedsCompilation: yes
-URL:https://github.com/gordonliu810822/CoMM
+URL: https://github.com/gordonliu810822/CoMM
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

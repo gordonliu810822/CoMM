@@ -13,7 +13,7 @@
 #include <armadillo_bits/config.hpp>
 #include "plinkfun.hpp"
 #include "lmm_covar_pxem.hpp"
-#include "AUDI_covar_pxem.hpp"
+#include "CoMM_covar_pxem.hpp"
 #include "readExprFile.hpp"
 
 using namespace std;

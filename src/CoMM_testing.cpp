@@ -12,8 +12,42 @@ using namespace std;
 using namespace Rcpp;
 using namespace arma;
 
+//' @title
+//' CoMM
+//' @description
+//' CoMM to dissecting genetic contributions to complex traits by leveraging regulatory information.
+//'
+//' @param stringname1  prefix for eQTL genotype file with plink format (bim, bed).
+//' @param stringname2  prefix for GWAS genotype and phenotype file with plink format (bim, bed, fam).
+//' @param stringname3  gene expression file with full name.
+//' @param stringname4  covariates file for eQTL data.
+//' @param stringname5  covariates file for GWAS data, e.g. top 10 PCs.
+//' @param whCol  specify which phenotype is used in fam. For example, when whCol = 2, the seven-th column of fam file will be used as phenotype.
+//' @param bw  the number of downstream and upstream SNPs that are considered as cis-SNP within a gene.
+//'
+//' @return List of model parameters
+//'
+//' @examples
+//' ##Working with no summary statistics, no covariates and options
+//' data(CoMM)
+//' file1 = "1000G.EUR.QC.1";
+//' file2 = "NFBC_filter_mph10";
+//' file3 = "Geuvadis_gene_expression_qn.txt";
+//' file4 = "";
+//' file5 = "pc5_NFBC_filter_mph10.txt";
+//' whichPheno = 1;
+//' bw = 500000;
+//'
+//' fm = AUDI_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);
+//' data(IGESSDB)
+//' fit <- iGess(Model$X, Model$y, NULL, Model$AIPVal)
+//'
+//' @details
+//' \code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
+//' the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
+//' @export
 // [[Rcpp::export]]
-Rcpp::List AUDI_testing_run(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4,
+Rcpp::List CoMM_testing_run(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4,
 	std::string stringname5, int whCol, int bw){ //int normalize_option = 1, int pred_option = 0){//, char* A21, char* A22){
 	// normalize_option: 1. normalize each separately, 2. normalize both plink files together
 	// match SNPs in file 1 and file 2 GWAS (common SNPs in x1 and x2 in columns)
@@ -80,7 +114,7 @@ Rcpp::List AUDI_testing_run(std::string stringname1, std::string stringname2, st
 				uvec idx2 = find(y != 9999);
 				X1tmp = ((&X1tmp) -> rows(idx2));
 
-				
+
 				mat w1tmp = ((&w1) -> rows(idx2));
 
 				y = y(idx2);
@@ -96,6 +130,12 @@ Rcpp::List AUDI_testing_run(std::string stringname1, std::string stringname2, st
 				rowvec sdX2tmp = stddev(X2tmp, 0, 0); // see manual
 				X2tmp = (X2tmp - repmat(meanX2tmp, X2tmp.n_rows, 1))/ repmat(sdX2tmp, X2tmp.n_rows, 1) / sqrt   (X2tmp.n_cols);
 
+				rowvec X1row = X1tmp.row(0);
+				X1tmp = X1tmp.cols(find_finite(X1row));
+				//cout << g + 1 << "-th Gene: dim of X1 tmp " << X1tmp.n_rows << "-by-" << X1tmp.n_cols;
+				//X1out = X1tmp;
+
+				X2tmp = X2tmp.cols(find_finite(X1row));
 				//cout << "Dim of X2tmp: " << X2tmp.n_rows <<"*" <<X2tmp.n_cols << endl;
 				//}
 				/*else if ( normalize_option == 2 ){
@@ -133,8 +173,8 @@ Rcpp::List AUDI_testing_run(std::string stringname1, std::string stringname2, st
 				}*/
 
 				// fit model under Ha and H0
-				List fmHa = AUDI_covar_pxem(y, z, X1tmp, X2tmp, w1tmp, w2, sigma2beta, sigma2y, beta0, 0, 1e-5, 1000);
-				List fmHo = AUDI_covar_pxem(y, z, X1tmp, X2tmp, w1tmp, w2, sigma2beta, sigma2y, beta0, 1, 1e-5, 1000);
+				List fmHa = CoMM_covar_pxem(y, z, X1tmp, X2tmp, w1tmp, w2, sigma2beta, sigma2y, beta0, 0, 1e-5, 1000);
+				List fmHo = CoMM_covar_pxem(y, z, X1tmp, X2tmp, w1tmp, w2, sigma2beta, sigma2y, beta0, 1, 1e-5, 1000);
 				//cout <<"break 2 ..." <<endl;
 
 				double alphatmp = fmHa["alpha"];
