@@ -43,7 +43,6 @@ CoMM_covar_pxem <- function(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, co
 #'
 #' @examples
 #' ##Working with no summary statistics, no covariates and options
-#' data(CoMM)
 #' file1 = "1000G.EUR.QC.1";
 #' file2 = "NFBC_filter_mph10";
 #' file3 = "Geuvadis_gene_expression_qn.txt";
@@ -53,8 +52,6 @@ CoMM_covar_pxem <- function(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, co
 #' bw = 500000;
 #'
 #' fm = AUDI_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);
-#' data(IGESSDB)
-#' fit <- iGess(Model$X, Model$y, NULL, Model$AIPVal)
 #'
 #' @details
 #' \code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)

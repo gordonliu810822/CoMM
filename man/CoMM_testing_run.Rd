@@ -34,7 +34,6 @@ the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
 }
 \examples{
 ##Working with no summary statistics, no covariates and options
-data(CoMM)
 file1 = "1000G.EUR.QC.1";
 file2 = "NFBC_filter_mph10";
 file3 = "Geuvadis_gene_expression_qn.txt";
@@ -44,7 +43,5 @@ whichPheno = 1;
 bw = 500000;
 
 fm = AUDI_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);
-data(IGESSDB)
-fit <- iGess(Model$X, Model$y, NULL, Model$AIPVal)
 
 }
