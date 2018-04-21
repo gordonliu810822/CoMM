@@ -65,7 +65,3 @@ lmm_pxem <- function(y, w, x, maxIter) {
     .Call('_CoMM_lmm_pxem', PACKAGE = 'CoMM', y, w, x, maxIter)
 }
 
-ReadPlinkFamFile2 <- function(stringname, FID, IID, pheno, nrows, whCol) {
-    invisible(.Call('_CoMM_ReadPlinkFamFile2', PACKAGE = 'CoMM', stringname, FID, IID, pheno, nrows, whCol))
-}
-

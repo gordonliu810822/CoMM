@@ -1,5 +1,18 @@
 # kernel base rl_skat, X is fixed covariates, Z is random covariates, K = Z %*% W %*% t(Z)
 require(survey)
+
+#' @title
+#' CoMM
+#' @description
+#' fit SKAT using RL-SKAT: An Exact and Efficient Score Test for Heritability and Set Tests.
+#'
+#' @param y  a vector for the phenotype of GWAS.
+#' @param Z  a standardized genotype matrix for GWAS data.
+#' @param Z  a matrix of coveriates.
+#'
+#' @return List of model parameters: test statistics (scores) and p-value (pval)
+#'
+#' @export
 rl_skat <- function(Z,y,X=NULL,intercept=T,method=NULL){
   y <- as.matrix(y)
   N <- ncol(y)

@@ -60,27 +60,11 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// ReadPlinkFamFile2
-void ReadPlinkFamFile2(std::string stringname, CharacterVector FID, CharacterVector IID, NumericVector pheno, int nrows, int whCol);
-RcppExport SEXP _CoMM_ReadPlinkFamFile2(SEXP stringnameSEXP, SEXP FIDSEXP, SEXP IIDSEXP, SEXP phenoSEXP, SEXP nrowsSEXP, SEXP whColSEXP) {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type stringname(stringnameSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type FID(FIDSEXP);
-    Rcpp::traits::input_parameter< CharacterVector >::type IID(IIDSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type pheno(phenoSEXP);
-    Rcpp::traits::input_parameter< int >::type nrows(nrowsSEXP);
-    Rcpp::traits::input_parameter< int >::type whCol(whColSEXP);
-    ReadPlinkFamFile2(stringname, FID, IID, pheno, nrows, whCol);
-    return R_NilValue;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_CoMM_CoMM_covar_pxem", (DL_FUNC) &_CoMM_CoMM_covar_pxem, 12},
     {"_CoMM_CoMM_testing_run", (DL_FUNC) &_CoMM_CoMM_testing_run, 7},
     {"_CoMM_lmm_pxem", (DL_FUNC) &_CoMM_lmm_pxem, 4},
-    {"_CoMM_ReadPlinkFamFile2", (DL_FUNC) &_CoMM_ReadPlinkFamFile2, 6},
     {NULL, NULL, 0}
 };
 
