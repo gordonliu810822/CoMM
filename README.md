@@ -29,7 +29,7 @@ All the simulation results can be reproduced by using the code at [simulation](h
 
 References
 ==========
-Can Yang^*^, Xiang Wan^*^, Xinyi Lin, Mengjie Chen, Xiang Zhou, Jin Liu^+^. (2018) CoMM: a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information.
+Can Yang$$^*$$, Xiang Wan$$^*$$, Xinyi Lin, Mengjie Chen, Xiang Zhou, Jin Liu$$^+$$. (2018) CoMM: a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information.
 
 
 Development
