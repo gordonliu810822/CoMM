@@ -44,8 +44,6 @@ Rcpp::List getExprFile2(std::string filename, char delimiter, int ncols, int nro
     upper(nrow_ind) = atof(tmp[1].c_str());
     chr_expr(nrow_ind) = atof(tmp[5].c_str());
 
- //   cout << ncols-ncols_omit << ";" << nrow_ind << endl;
-
 
     for (int j = 0; j < ncols-ncols_omit; j ++){
       if (tmp[j+6].compare("NA") == 0){
@@ -71,75 +69,4 @@ Rcpp::List getExprFile2(std::string filename, char delimiter, int ncols, int nro
 }
 
 
-/*// [[Rcpp::export]]
-Rcpp::List getExprFile(std::string filename, char delimiter, int ncols, int nrows, int ncols_omit){
-	std::ifstream myfile (filename.c_str());
-	mat expr(nrows -1, ncols-ncols_omit);
-	std::string line;
-	CharacterVector genetype1(nrows), genetype2(nrows), targetID(nrows);
-	vec lower(nrows), upper(nrows), chr_expr(nrows);
 
-	if (myfile.is_open()){
-		getline(myfile, line);
-	}
-	//cout << "nrows: " << nrows << ";ncols: "  << ncols << ";ncols_omit: " << ncols_omit << endl;
-
-	clock_t t1 = clock();
-
-	int nrow_ind = 0;
-	while (nrow_ind < nrows - 1){
-		if (nrow_ind % 1000 == 0 && nrow_ind != 0){
-			cout << nrow_ind << "-th Gene" << ",";
-			cout << "Elapsed time is " << (clock() - t1)*1.0 / CLOCKS_PER_SEC << " sec" << endl;
-		}
-
-		getline(myfile, line);
-
-		stringstream ss(line); // Turn the string into a stream.
-		string tok;
-		CharacterVector tmp;
-
-		while(getline(ss, tok, delimiter)){
-			tmp.push_back(tok);
-		}
-		//cout << tmp.size() << endl;
-
-		genetype1(nrow_ind) = tmp(2);
-		genetype2(nrow_ind) = tmp(3);
-		targetID(nrow_ind) = tmp(4);
-		lower(nrow_ind) = atof(tmp(0));
-		upper(nrow_ind) = atof(tmp(1));
-		chr_expr(nrow_ind) = atof(tmp(5));
-
-		//cout << ncols-ncols_omit << ";" << nrow_ind << endl;
-
-		for (int j = 0; j < ncols-ncols_omit; j ++){
-			
-			//cout << size(expr) << endl;
-			if (tmp(j+6) == "NA"){
-				expr(nrow_ind,j) = log(-10);
-			}
-			else {
-				expr(nrow_ind,j) = atof(tmp(j+6)); 
-			}
-			
-			//cout << nrow_ind + 1 << "-th row, " << j + 6<< "-th col: " 
-			//	<< tmp(j+6)<< ";" << expr(nrow_ind,j) << endl;
-		}
-
-		//cout <<genetype1(nrow_ind) << genetype2(nrow_ind) << targetID(nrow_ind) << lower(nrow_ind) << upper(nrow_ind) << endl;
-		nrow_ind ++ ;
-
-		//cout << "end of " << nrow_ind  << "th line." << endl;
-	}
-
-	List output = List::create(Rcpp::Named("genetype1") = genetype1,
-		Rcpp::Named("genetype2") = genetype2,
-		Rcpp::Named("targetID") = targetID,
-		Rcpp::Named("lower") = lower,
-		Rcpp::Named("upper") = upper,
-		Rcpp::Named("chr_expr") = chr_expr,
-		Rcpp::Named("expr") = expr);
-	return output;
-}
-*/

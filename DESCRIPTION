@@ -9,7 +9,7 @@ License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 Imports: Rcpp (>= 0.12.10)
-LinkingTo: Rcpp,RcppArmadillo,BH,survey,RcppEigen,bigmemory
+LinkingTo: Rcpp,RcppArmadillo,BH,survey,bigmemory
 NeedsCompilation: yes
 URL: https://github.com/gordonliu810822/CoMM
 RoxygenNote: 6.0.1

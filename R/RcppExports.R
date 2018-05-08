@@ -4,26 +4,72 @@
 #' @title
 #' CoMM
 #' @description
-#' fit CoMM for a single gene
+#' CoMM to dissecting genetic contributions to complex traits by leveraging regulatory information.
 #'
-#' @param y  a vector for the expression of a gene.
-#' @param z  a vector for the phenotype of GWAS.
-#' @param X1  a standardized genotype matrix for eQTL data.
-#' @param X2  a standardized genotype matrix for GWAS data.
-#' @param w1  a matrix of coveriates for the expression of a gene.
-#' @param w2  a matrix of coveriates for the GWAS.
-#' @param sigma2beta  a initial value of sigma2beta.
-#' @param sigma2y  a initial value of sigma2y.
-#' @param beta0  a initial value of beta0.
-#' @param constr  indicator value for constraint. When constr = 1, alpha = 0, otherwise, alpha is free to vary.
-#' @param epsStopLogLik convergence criteria. default is 1e-5.
-#' @param maxIter maximum iteraion number. default is 1000.
+#' @param y  gene expression vector.
+#' @param z  trait vector.
+#' @param x1  normalized genotype (cis-SNPs) matrix for eQTL.
+#' @param x2  normalized genotype (cis-SNPs) matrix for GWAS.
+#' @param w1  covariates file for eQTL data.
+#' @param w2  covariates file for GWAS data, e.g. top 10 PCs.
+#' @param constr  indicator for constraint (alpha = 0 if constr = 1).
+#' @param epsStopLogLik  convergence criteria (default is 1e-5).
+#' @param maxIter  maximum iteration (default is 1000).
+#' @param pxem_indicator  indicator for using PX-EM (default is 1). pxem_indicator = 1 for using PX-EM and EM otherwise.
 #'
 #' @return List of model parameters
 #'
+#' @examples
+#' ##Working with no summary statistics, no covariates and options
+#' library(mvtnorm)
+NULL
+
+#'
+#' fm = CoMM_covar_pxem(y,z,x1p,x2p,w1,w2);
+#'
+#' @details
+#' \code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
+#' the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
 #' @export
-CoMM_covar_pxem <- function(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik = 1e-5, maxIter = 1000L) {
-    .Call('_CoMM_CoMM_covar_pxem', PACKAGE = 'CoMM', y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik, maxIter)
+CoMM_covar_pxem <- function(y, z, x1, x2, w1, w2, constr = 0L, epsStopLogLik = 1e-5, maxIter = 1000L, pxem_indicator = 1L) {
+    .Call('_CoMM_CoMM_covar_pxem', PACKAGE = 'CoMM', y, z, x1, x2, w1, w2, constr, epsStopLogLik, maxIter, pxem_indicator)
+}
+
+#' @title
+#' CoMM
+#' @description
+#' CoMM to dissecting genetic contributions to complex traits by leveraging regulatory information.
+#'
+#' @param stringname1  prefix for eQTL genotype file with plink format (bim, bed).
+#' @param stringname2  prefix for GWAS genotype and phenotype file with plink format (bim, bed, fam).
+#' @param stringname3  gene expression file with full name.
+#' @param stringname4  covariates file for eQTL data.
+#' @param stringname5  covariates file for GWAS data, e.g. top 10 PCs.
+#' @param whCol  specify which phenotype is used in fam. For example, when whCol = 2, the seven-th column of fam file will be used as phenotype.
+#' @param bw  the number of downstream and upstream SNPs that are considered as cis-SNP within a gene.
+#' @param coreNum the number of core for parallelization. 
+#'
+#' @return List of model parameters
+#'
+#' @examples
+#' ##Working with no summary statistics, no covariates and options
+#' file1 = "1000G.EUR.QC.1";
+#' file2 = "NFBC_filter_mph10";
+#' file3 = "Geuvadis_gene_expression_qn.txt";
+#' file4 = "";
+#' file5 = "pc5_NFBC_filter_mph10.txt";
+#' whichPheno = 1;
+#' bw = 500000;
+#' coreNum = 24;
+#'
+#' fm = CoMM_testing_run_mt(file1,file2,file3, file4,file5, whichPheno, bw, coreNum);
+#'
+#' @details
+#' \code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
+#' the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
+#' @export
+CoMM_testing_run_mt <- function(stringname1, stringname2, stringname3, stringname4, stringname5, whCol, bw, coreNum) {
+    .Call('_CoMM_CoMM_testing_run_mt', PACKAGE = 'CoMM', stringname1, stringname2, stringname3, stringname4, stringname5, whCol, bw, coreNum)
 }
 
 #' @title
@@ -51,7 +97,7 @@ CoMM_covar_pxem <- function(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, co
 #' whichPheno = 1;
 #' bw = 500000;
 #'
-#' fm = AUDI_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);
+#' fm = CoMM_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);
 #'
 #' @details
 #' \code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)

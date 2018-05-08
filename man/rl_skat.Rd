@@ -14,7 +14,7 @@ rl_skat(Z, y, X = NULL, intercept = T, method = NULL)
 \item{Z}{a matrix of coveriates.}
 }
 \value{
-List of model parameters
+List of model parameters: test statistics (scores) and p-value (pval)
 }
 \description{
 fit SKAT using RL-SKAT: An Exact and Efficient Score Test for Heritability and Set Tests.

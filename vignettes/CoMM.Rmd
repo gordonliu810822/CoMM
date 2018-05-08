@@ -21,6 +21,7 @@ This vignette provides an introduction to the `CoMM` package. R package `CoMM` i
 The package can be installed with the command:
 
 `library(devtools)`
+
 `install_github("gordonliu810822/CoMM")`
 
 The package can be loaded with the command:
@@ -32,6 +33,7 @@ library("CoMM")
 
 We first generate genotype data using function _genRawGeno_:
 ```{r}
+library(mvtnorm)
 L = 1; M = 100; rho =0.5
 n1 = 350; n2 = 5000;
 maf = runif(M,0.05,0.5)
@@ -93,8 +95,8 @@ beta0 = fm0$beta0;
 ```
 Fit CoMM w/ and w/o constraint that alpha = 0 as
 ```{r}
-fmHa = CoMM_covar_pxem(y, z, x1p, x2p, w1, w2, sigma2beta, sigma2y, beta0, 0, 1e-5, 1000);
-fmH0 = CoMM_covar_pxem(y, z, x1p, x2p, w1, w2, sigma2beta, sigma2y, beta0, 1, 1e-5, 1000);
+fmHa = CoMM_covar_pxem(y, z, x1p, x2p, w1, w2,constr = 0);
+fmH0 = CoMM_covar_pxem(y, z, x1p, x2p, w1, w2,constr = 1);
 loglikHa = max(fmHa$loglik,na.rm=T)
 loglikH0 = max(fmH0$loglik,na.rm=T)
 tstat = 2 * (loglikHa - loglikH0);
@@ -114,11 +116,12 @@ file5 = "pc5_NFBC_filter_mph10.txt";
 whichPheno = 1;
 bw = 500000;
 ```
-Here, file1 is the prefix for eQTL genotype data in plink binary format, file2 is the GWAS data in plink binary format, file3 is the gene expression file with extended name, file4 and file5 are covariates file for eQTL and GWAS data, respectively. Then run `fm = AUDI_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);` . For gene expresion file, it must have the following format (rows for genes and columns for individuais):
+Here, file1 is the prefix for eQTL genotype data in plink binary format, file2 is the GWAS data in plink binary format, file3 is the gene expression file with extended name, file4 and file5 are covariates file for eQTL and GWAS data, respectively. Then run `fm = CoMM_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);`. For gene expresion file, it must have the following format (rows for genes and columns for individuais):
 ```{r, echo=FALSE, results='asis'}
 knitr::kable(ge[,1:8])
 ```
 
+To make 'CoMM' further speeding, we implement multiple thread version of 'CoMM' by just run `fm = CoMM_testing_run_mt(file1,file2,file3, file4,file5, whichPheno, bw, coreNum);` where `coreNum = 24` is the number of cores in your CPU.
 
 ### Figures
 

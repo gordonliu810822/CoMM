@@ -2,30 +2,45 @@
 // Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #include <RcppArmadillo.h>
-#include <RcppEigen.h>
 #include <Rcpp.h>
 
 using namespace Rcpp;
 
 // CoMM_covar_pxem
-List CoMM_covar_pxem(arma::vec y, arma::vec z, arma::mat x1, arma::mat x2, arma::mat w1, arma::mat w2, double sigma2beta, double sigma2y, arma::vec beta0, int constr, double epsStopLogLik, int maxIter);
-RcppExport SEXP _CoMM_CoMM_covar_pxem(SEXP ySEXP, SEXP zSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP w1SEXP, SEXP w2SEXP, SEXP sigma2betaSEXP, SEXP sigma2ySEXP, SEXP beta0SEXP, SEXP constrSEXP, SEXP epsStopLogLikSEXP, SEXP maxIterSEXP) {
+List CoMM_covar_pxem(const arma::vec& y, const arma::vec& z, const arma::mat& x1, const arma::mat& x2, const arma::mat& w1, const arma::mat& w2, const int constr, const double epsStopLogLik, const int maxIter, const int pxem_indicator);
+RcppExport SEXP _CoMM_CoMM_covar_pxem(SEXP ySEXP, SEXP zSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP w1SEXP, SEXP w2SEXP, SEXP constrSEXP, SEXP epsStopLogLikSEXP, SEXP maxIterSEXP, SEXP pxem_indicatorSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type z(zSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type x1(x1SEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type x2(x2SEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type w1(w1SEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type w2(w2SEXP);
-    Rcpp::traits::input_parameter< double >::type sigma2beta(sigma2betaSEXP);
-    Rcpp::traits::input_parameter< double >::type sigma2y(sigma2ySEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type beta0(beta0SEXP);
-    Rcpp::traits::input_parameter< int >::type constr(constrSEXP);
-    Rcpp::traits::input_parameter< double >::type epsStopLogLik(epsStopLogLikSEXP);
-    Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
-    rcpp_result_gen = Rcpp::wrap(CoMM_covar_pxem(y, z, x1, x2, w1, w2, sigma2beta, sigma2y, beta0, constr, epsStopLogLik, maxIter));
+    Rcpp::traits::input_parameter< const arma::vec& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type z(zSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type x1(x1SEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type x2(x2SEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type w1(w1SEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type w2(w2SEXP);
+    Rcpp::traits::input_parameter< const int >::type constr(constrSEXP);
+    Rcpp::traits::input_parameter< const double >::type epsStopLogLik(epsStopLogLikSEXP);
+    Rcpp::traits::input_parameter< const int >::type maxIter(maxIterSEXP);
+    Rcpp::traits::input_parameter< const int >::type pxem_indicator(pxem_indicatorSEXP);
+    rcpp_result_gen = Rcpp::wrap(CoMM_covar_pxem(y, z, x1, x2, w1, w2, constr, epsStopLogLik, maxIter, pxem_indicator));
+    return rcpp_result_gen;
+END_RCPP
+}
+// CoMM_testing_run_mt
+Rcpp::List CoMM_testing_run_mt(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4, std::string stringname5, int whCol, int bw, const int coreNum);
+RcppExport SEXP _CoMM_CoMM_testing_run_mt(SEXP stringname1SEXP, SEXP stringname2SEXP, SEXP stringname3SEXP, SEXP stringname4SEXP, SEXP stringname5SEXP, SEXP whColSEXP, SEXP bwSEXP, SEXP coreNumSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type stringname1(stringname1SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname2(stringname2SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname3(stringname3SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname4(stringname4SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname5(stringname5SEXP);
+    Rcpp::traits::input_parameter< int >::type whCol(whColSEXP);
+    Rcpp::traits::input_parameter< int >::type bw(bwSEXP);
+    Rcpp::traits::input_parameter< const int >::type coreNum(coreNumSEXP);
+    rcpp_result_gen = Rcpp::wrap(CoMM_testing_run_mt(stringname1, stringname2, stringname3, stringname4, stringname5, whCol, bw, coreNum));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -47,22 +62,23 @@ BEGIN_RCPP
 END_RCPP
 }
 // lmm_pxem
-List lmm_pxem(arma::vec y, arma::mat w, arma::mat x, int maxIter);
+Rcpp::List lmm_pxem(const arma::vec y, const arma::mat w, const arma::mat x, const int maxIter);
 RcppExport SEXP _CoMM_lmm_pxem(SEXP ySEXP, SEXP wSEXP, SEXP xSEXP, SEXP maxIterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type w(wSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
+    Rcpp::traits::input_parameter< const arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const arma::mat >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const arma::mat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const int >::type maxIter(maxIterSEXP);
     rcpp_result_gen = Rcpp::wrap(lmm_pxem(y, w, x, maxIter));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_CoMM_CoMM_covar_pxem", (DL_FUNC) &_CoMM_CoMM_covar_pxem, 12},
+    {"_CoMM_CoMM_covar_pxem", (DL_FUNC) &_CoMM_CoMM_covar_pxem, 10},
+    {"_CoMM_CoMM_testing_run_mt", (DL_FUNC) &_CoMM_CoMM_testing_run_mt, 8},
     {"_CoMM_CoMM_testing_run", (DL_FUNC) &_CoMM_CoMM_testing_run, 7},
     {"_CoMM_lmm_pxem", (DL_FUNC) &_CoMM_lmm_pxem, 4},
     {NULL, NULL, 0}

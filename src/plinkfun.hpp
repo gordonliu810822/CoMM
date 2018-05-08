@@ -22,18 +22,17 @@ using namespace std;
 using namespace Rcpp;
 using namespace arma;
 
-
-void getFourGentype(unsigned* geno, std::bitset<8> bits);
 void readPlink(string stringname, long int N, long int P, unsigned* X);
+void readPlink2(string stringname,int N, int P, char* X);
 int getLineNum(string filename);
+arma::mat getSubMat(char* X, int N , int P, uvec indics, double* sub_matrix_double);
 void ReadPlinkBimFile(string stringname, IntegerVector A1, IntegerVector A2, CharacterVector rsname,
-	IntegerVector chr, IntegerVector bp, NumericVector morgan, int P);
+                      IntegerVector chr, IntegerVector bp, NumericVector morgan, int P);
 void ReadPlinkFamFile(std::string stringname, CharacterVector FID, CharacterVector IID, IntegerVector sex,
-	NumericVector pheno, int N);
-//CharacterVector charv_subset(CharacterVector x, uvec idx);
-List match_SNPs(string stringname1, string stringname2);
+                      NumericVector pheno, int N);
 void ReadPlinkFamFile2(std::string stringname, CharacterVector FID, CharacterVector IID,
-	NumericVector pheno, int nrows, int whCol);
-
+                       NumericVector pheno, int nrows, int whCol);
+//void getFourGentype(unsigned* geno, std::bitset<8> bits);
+CharacterVector charv_subset(CharacterVector x, uvec idx);
 
 #endif /* plinkfun_hpp */
