@@ -2,15 +2,83 @@
 % Please edit documentation in R/RcppExports.R
 \name{CoMM_covar_pxem}
 \alias{CoMM_covar_pxem}
-\title{fm = CoMM_covar_pxem(y,z,x1p,x2p,w1,w2);}
+\title{CoMM}
 \usage{
 CoMM_covar_pxem(y, z, x1, x2, w1, w2, constr = 0L, epsStopLogLik = 1e-05,
   maxIter = 1000L, pxem_indicator = 1L)
 }
+\arguments{
+\item{y}{gene expression vector.}
+
+\item{z}{trait vector.}
+
+\item{x1}{normalized genotype (cis-SNPs) matrix for eQTL.}
+
+\item{x2}{normalized genotype (cis-SNPs) matrix for GWAS.}
+
+\item{w1}{covariates file for eQTL data.}
+
+\item{w2}{covariates file for GWAS data, e.g. top 10 PCs.}
+
+\item{constr}{indicator for constraint (alpha = 0 if constr = 1).}
+
+\item{epsStopLogLik}{convergence criteria (default is 1e-5).}
+
+\item{maxIter}{maximum iteration (default is 1000).}
+
+\item{pxem_indicator}{indicator for using PX-EM (default is 1). pxem_indicator = 1 for using PX-EM and EM otherwise.}
+}
+\value{
+List of model parameters
+}
 \description{
-fm = CoMM_covar_pxem(y,z,x1p,x2p,w1,w2);
+CoMM to dissecting genetic contributions to complex traits by leveraging regulatory information.
 }
 \details{
-\code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
-the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
+\code{CoMM_covar_pxem} fits the CoMM model using raw data.
+}
+\examples{
+L = 1;
+M = 100;
+rho =0.5;
+n1 = 350;
+n2 = 5000;
+
+X <- matrix(rnorm((n1+n2)*M),nrow=n1+n2,ncol=M);
+beta_prop = 0.2;
+b = numeric(); m = M * beta_prop;
+b[sample(M,m)] = rnorm(m); h2y = 0.05;
+y0 <- X\%*\%b + 6;
+y  <- y0 + (as.vector(var(y0)*(1-h2y)/h2y))^0.5*rnorm(n1+n2);
+
+h2 = 0.001;
+y1 <- y[1:n1]
+X1 <- X[1:n1,]
+y2 <- y0[(n1+1):(n1+n2)]
+X2 <- X[(n1+1):(n1+n2),]
+alpha0 <- 3
+alpha <- 0.3
+sz2 <- var(y2*alpha) * ((1-h2)/h2)
+z <- alpha0 + y2*alpha + rnorm(n2,0,sqrt(sz2))
+y = y1;
+
+mean.x1 = apply(X1,2,mean);
+x1m = sweep(X1,2,mean.x1);
+std.x1 = apply(x1m,2,sd)
+x1p = sweep(x1m,2,std.x1,"/");
+x1p = x1p/sqrt(dim(x1p)[2])
+
+ mean.x2 = apply(X2,2,mean);
+x2m = sweep(X2,2,mean.x2);
+std.x2 = apply(x2m,2,sd)
+x2p = sweep(x2m,2,std.x2,"/");
+x2p = x2p/sqrt(dim(x2p)[2])
+
+w2 = matrix(rep(1,n2),ncol=1);
+w1 = matrix(rep(1,n1),ncol=1);
+fm = CoMM_covar_pxem(y,z,x1p,x2p,w1,w2);
+
+}
+\author{
+Jin Liu, \email{jin.liu@duke-nus.edu.sg}
 }

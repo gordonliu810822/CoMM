@@ -31,11 +31,10 @@ List of model parameters
 CoMM to dissecting genetic contributions to complex traits by leveraging regulatory information.
 }
 \details{
-\code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
+\code{CoMM_testing_run_mt} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
 the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
 }
 \examples{
-##Working with no summary statistics, no covariates and options
 file1 = "1000G.EUR.QC.1";
 file2 = "NFBC_filter_mph10";
 file3 = "Geuvadis_gene_expression_qn.txt";
@@ -47,4 +46,7 @@ coreNum = 24;
 
 fm = CoMM_testing_run_mt(file1,file2,file3, file4,file5, whichPheno, bw, coreNum);
 
+}
+\author{
+Jin Liu, \email{jin.liu@duke-nus.edu.sg}
 }

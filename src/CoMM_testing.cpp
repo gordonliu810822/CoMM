@@ -14,6 +14,7 @@ using namespace std;
 using namespace Rcpp;
 using namespace arma;
 
+//' @author Jin Liu, \email{jin.liu@duke-nus.edu.sg}
 //' @title
 //' CoMM
 //' @description
@@ -31,7 +32,6 @@ using namespace arma;
 //' @return List of model parameters
 //'
 //' @examples
-//' ##Working with no summary statistics, no covariates and options
 //' file1 = "1000G.EUR.QC.1";
 //' file2 = "NFBC_filter_mph10";
 //' file3 = "Geuvadis_gene_expression_qn.txt";
@@ -44,7 +44,7 @@ using namespace arma;
 //' fm = CoMM_testing_run_mt(file1,file2,file3, file4,file5, whichPheno, bw, coreNum);
 //'
 //' @details
-//' \code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
+//' \code{CoMM_testing_run_mt} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
 //' the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
 //' @export
 // [[Rcpp::export]]
@@ -233,7 +233,7 @@ Rcpp::List CoMM_testing_run_mt(std::string stringname1, std::string stringname2,
     return out;
 }
 
-
+//' @author Jin Liu, \email{jin.liu@duke-nus.edu.sg}
 //' @title
 //' CoMM
 //' @description
@@ -262,7 +262,7 @@ Rcpp::List CoMM_testing_run_mt(std::string stringname1, std::string stringname2,
 //' fm = CoMM_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);
 //'
 //' @details
-//' \code{CoMM} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
+//' \code{CoMM_testing_run} fits the CoMM model. It requires to provide plink binary eQTL genotype file (bim, bed)
 //' the GWAS plink binary file (bim, bed, fam), gene expression file for eQTL.
 //' @export
 // [[Rcpp::export]]
