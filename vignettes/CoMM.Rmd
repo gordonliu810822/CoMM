@@ -4,8 +4,8 @@ title: 'CoMM: a collaborative mixed model to dissecting genetic contributions to
 author: "Jin Liu"
 date: '`r Sys.Date()`'
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 vignette: |
   %\VignetteIndexEntry{Vignette Title} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
 ---
@@ -117,7 +117,7 @@ file5 = "pc5_NFBC_filter_mph10.txt";
 whichPheno = 1;
 bw = 500000;
 ```
-Here, file1 is the prefix for eQTL genotype data in plink binary format, file2 is the GWAS data in plink binary format, file3 is the gene expression file with extended name, file4 and file5 are covariates file for eQTL and GWAS data, respectively. Then run `fm = CoMM_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);`. For gene expresion file, it must have the following format (rows for genes and columns for individuais):
+Here, file1 is the prefix for eQTL genotype data in plink binary format, file2 is the GWAS data in plink binary format, file3 is the gene expression file with extended name, file4 and file5 are covariates file for eQTL and GWAS data, respectively. Then run `fm = CoMM_testing_run(file1,file2,file3, file4,file5, whichPheno, bw);`. For gene expresion file, it must have the following format (rows for genes and columns for individuais and note that it must be tab delimited):
 ```{r, echo=FALSE, results='asis'}
 knitr::kable(ge[,1:8])
 ```

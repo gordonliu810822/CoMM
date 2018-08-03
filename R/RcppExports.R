@@ -189,3 +189,7 @@ lmm_pxem <- function(y, w, x, maxIter) {
     .Call('_CoMM_lmm_pxem', PACKAGE = 'CoMM', y, w, x, maxIter)
 }
 
+lmm_pxem2 <- function(y, w, x, maxIter) {
+    .Call('_CoMM_lmm_pxem2', PACKAGE = 'CoMM', y, w, x, maxIter)
+}
+

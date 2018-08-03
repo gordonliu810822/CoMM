@@ -63,7 +63,7 @@ Rcpp::List CoMM_testing_run_mt(std::string stringname1, std::string stringname2,
     CharacterVector rsname_4use_r = tmp["rsname_4use_r"];
     uvec chr_4use_r = tmp["chr_4use_r"];
     uvec bp_4use_r = tmp["bp_4use_r"];
-    CharacterVector genetype1 = tmp["genetype1"], genetype2 = tmp["genetype2"], targetID = tmp["targetID"];
+    CharacterVector genetype1 = tmp["genetype1"], genetype2 = tmp["genetype2"], targetID = tmp["targetID"], indiv_4use = tmp["indiv_4use"];
     vec lower = tmp["lower"], upper = tmp["upper"], chr_expr = tmp["chr_expr"], ind = tmp["ind"];
     uvec idxin1 = tmp["idxin1"], idxin2 = tmp["idxin2"], idxinFile1 = tmp["idxinFile1"], idxinFile2 = tmp["idxinFile2"];
     
@@ -114,22 +114,25 @@ Rcpp::List CoMM_testing_run_mt(std::string stringname1, std::string stringname2,
         covar2 = ones<mat>(N2,1);
     }
     
-    // load covariates file w1
-    mat covar1;
-    CharacterVector IID_w1;
-    if (!stringname4.empty()){
-        List tmp = getColNum_Header(stringname4, delimiter);
-        int Ncovar = tmp["columns"];
-        tmp = getCovarFile(stringname4, delimiter, Ncovar, N1);
-        mat covar1 = tmp["covar"];
-        IID_w1 = tmp["IID"];
-        
-        covar1 = join_rows(ones<mat>(idxin1.n_elem, 1), covar1.rows(idxin1));
-    }
-    else {
-        covar1 = ones<mat>(idxin1.n_elem,1);
-    }
-    cout << "## End loading files ... " << endl;
+	// load covariates file w1
+	mat covar1;
+	CharacterVector IID_w1;
+	if (!stringname4.empty()){
+		List tmp = getColNum_Header(stringname4, delimiter);
+
+		int Ncovar = tmp["columns"];
+		tmp = getCovarFile(stringname4, delimiter, Ncovar, idxin1.n_elem);
+		mat covartmp = tmp["covar"];
+		IID_w1 = tmp["IID"];
+		IntegerVector idx_tmp = match(indiv_4use, IID_w1) -1;
+		uvec idx_exprcov(as<uvec>(idx_tmp));
+
+		covar1 = join_rows(ones<mat>(idxin1.n_elem, 1), covartmp.rows(idx_exprcov));
+	}
+	else {
+		covar1 = ones<mat>(idxin1.n_elem,1);
+	}
+	cout << "## End loading files ... " << endl;
     
     mat w1 = covar1, w2 = covar2;
     
@@ -280,7 +283,7 @@ Rcpp::List CoMM_testing_run(std::string stringname1, std::string stringname2, st
     CharacterVector rsname_4use_r = tmp["rsname_4use_r"];
     uvec chr_4use_r = tmp["chr_4use_r"];
     uvec bp_4use_r = tmp["bp_4use_r"];
-    CharacterVector genetype1 = tmp["genetype1"], genetype2 = tmp["genetype2"], targetID = tmp["targetID"];
+    CharacterVector genetype1 = tmp["genetype1"], genetype2 = tmp["genetype2"], targetID = tmp["targetID"], indiv_4use = tmp["indiv_4use"];
     vec lower = tmp["lower"], upper = tmp["upper"], chr_expr = tmp["chr_expr"], ind = tmp["ind"];
     uvec idxin1 = tmp["idxin1"], idxin2 = tmp["idxin2"], idxinFile1 = tmp["idxinFile1"], idxinFile2 = tmp["idxinFile2"];
     
@@ -331,22 +334,25 @@ Rcpp::List CoMM_testing_run(std::string stringname1, std::string stringname2, st
         covar2 = ones<mat>(N2,1);
     }
     
-    // load covariates file w1
-    mat covar1;
-    CharacterVector IID_w1;
-    if (!stringname4.empty()){
-        List tmp = getColNum_Header(stringname4, delimiter);
-        int Ncovar = tmp["columns"];
-        tmp = getCovarFile(stringname4, delimiter, Ncovar, N1);
-        mat covar1 = tmp["covar"];
-        IID_w1 = tmp["IID"];
-        
-        covar1 = join_rows(ones<mat>(idxin1.n_elem, 1), covar1.rows(idxin1));
-    }
-    else {
-        covar1 = ones<mat>(idxin1.n_elem,1);
-    }
-    cout << "## End loading files ... " << endl;
+	// load covariates file w1
+	mat covar1;
+	CharacterVector IID_w1;
+	if (!stringname4.empty()){
+		List tmp = getColNum_Header(stringname4, delimiter);
+
+		int Ncovar = tmp["columns"];
+		tmp = getCovarFile(stringname4, delimiter, Ncovar, idxin1.n_elem);
+		mat covartmp = tmp["covar"];
+		IID_w1 = tmp["IID"];
+		IntegerVector idx_tmp = match(indiv_4use, IID_w1) -1;
+		uvec idx_exprcov(as<uvec>(idx_tmp));
+
+		covar1 = join_rows(ones<mat>(idxin1.n_elem, 1), covartmp.rows(idx_exprcov));
+	}
+	else {
+		covar1 = ones<mat>(idxin1.n_elem,1);
+	}
+	cout << "## End loading files ... " << endl;
     
     mat w1 = covar1, w2 = covar2;
     

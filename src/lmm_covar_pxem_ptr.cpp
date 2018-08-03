@@ -94,7 +94,7 @@ void lmm_pxem_ptr(const arma::vec& y, const arma::mat& w, const arma::mat& x, co
 		}
 
 		Iteration = iter;
-		if (abs(loglik(iter - 1) - loglik(iter - 2)) < 1e-5) {
+		if (abs(loglik(iter - 1) - loglik(iter - 2)) < 1e-10) {
 
 			break;
 		}

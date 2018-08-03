@@ -369,7 +369,8 @@ Rcpp::List dataLoader1(std::string stringname1, std::string stringname2, std::st
                                Rcpp::Named("idxin2") = as<uvec>(idxin2),
                                Rcpp::Named("idxinFile1") = idxinFile1,
                                Rcpp::Named("idxinFile2") = idxinFile2,
-                               Rcpp::Named("ind") = ind);
+                               Rcpp::Named("ind") = ind,
+							   Rcpp::Named("indiv_4use") = indiv_4use);
     
     return output;
     
