@@ -32,7 +32,7 @@ References
 Can Yang<sup>c</sup>, 
 Xiang Wan<sup>c</sup>, 
 Xinyi Lin, Mengjie Chen, Xiang Zhou, 
-Jin Liu<sup>+</sup>. (2018) CoMM: a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information.
+Jin Liu<sup>+</sup>. (2018) [CoMM: a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty865/5123355).
 
 
 Development
