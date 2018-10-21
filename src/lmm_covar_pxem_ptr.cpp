@@ -156,7 +156,7 @@ void lmm_pxem_ptr(const arma::vec& y, const arma::mat& w, const arma::mat& x, co
 //' fm0 = lmm_pxem(y, w1,x1p, 100)
 //'
 //' @details
-//' \code{lmm_pxem} fits the linear mixed model.
+//' \code{lmm_pxem} fits the linear mixed model. (n < p)
 //' @export
 // [[Rcpp::export]]
 Rcpp::List lmm_pxem(const arma::vec y, const arma::mat w, const arma::mat x, const int maxIter){

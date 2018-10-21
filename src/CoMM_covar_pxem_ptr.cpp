@@ -4,7 +4,7 @@
 //#include <omp.h>
 #include <math.h>
 #include "lmm_covar_pxem_ptr.hpp"
-
+#include "lmm_pxem.hpp"
 using namespace Rcpp;
 using namespace arma;
 using namespace std;
@@ -220,7 +220,7 @@ List CoMM_covar_pxem(const arma::vec& y, const arma::vec& z, const arma::mat& x1
     mat Sigb = zeros<mat>(x1.n_cols,x1.n_cols);
     vec mub  = zeros<vec>(x1.n_cols);
 
-    lmm_pxem_ptr(y, w1, x1, maxIter,sigma2y,sigma2beta,beta0,loglik0,iter0,Sigb,mub);
+    lmm_pxem_ptr2(y, w1, x1, maxIter,sigma2y,sigma2beta,beta0,loglik0,iter0,Sigb,mub);
 
     //declaration of variables used within loop
     mat Sigma_inv(p,p), R(p,p), invR(p,p), Sigma(p,p);

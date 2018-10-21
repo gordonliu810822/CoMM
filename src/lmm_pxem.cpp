@@ -213,6 +213,50 @@ void lmm_pxem_ptr2(const arma::vec& y, const arma::mat& W, const arma::mat& X,  
   loglik_max = loglik(iteration);
 }
 
+//' @author Jin Liu, \email{jin.liu@duke-nus.edu.sg}
+//' @title
+//' CoMM
+//' @description
+//' CoMM to dissecting genetic contributions to complex traits by leveraging regulatory information.
+//'
+//' @param y  gene expression vector.
+//' @param x  normalized genotype (cis-SNPs) matrix for eQTL.
+//' @param w  covariates file for eQTL data.
+//' @param maxIter  maximum iteration (default is 1000).
+//'
+//' @return List of model parameters
+//'
+//' @examples
+//' L = 1; M = 100; rho =0.5
+//' n1 = 350; n2 = 5000;
+//' X <- matrix(rnorm((n1+n2)*M),nrow=n1+n2,ncol=M);
+//'
+//' beta_prop = 0.2;
+//' b = numeric(M);
+//' m = M * beta_prop;
+//' b[sample(M,m)] = rnorm(m);
+//' h2y = 0.05;
+//' b0 = 6;
+//'
+//' y0 <- X%*%b + b0;
+//' y  <- y0 + (as.vector(var(y0)*(1-h2y)/h2y))^0.5*rnorm(n1+n2);
+//' h2 = 0.001;
+//' y1 <- y[1:n1]
+//' X1 <- X[1:n1,]
+//' y = y1;
+//'
+//' mean.x1 = apply(X1,2,mean);
+//' x1m = sweep(X1,2,mean.x1);
+//' std.x1 = apply(x1m,2,sd)
+//' x1p = sweep(x1m,2,std.x1,"/");
+//' x1p = x1p/sqrt(dim(x1p)[2])
+//' w1 = matrix(rep(1,n1),ncol=1);
+//'
+//' fm0 = lmm_pxem2(y, w1,x1p, 100)
+//'
+//' @details
+//' \code{lmm_pxem2} fits the linear mixed model (n > p).
+//' @export
 // [[Rcpp::export]]
 Rcpp::List lmm_pxem2(const arma::vec y, const arma::mat w, const arma::mat x, const int maxIter){
 
