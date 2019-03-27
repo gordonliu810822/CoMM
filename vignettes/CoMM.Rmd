@@ -168,3 +168,5 @@ ggplot(t1e_rej, aes(x = Sparsity, y = Power,fill = Method))+
 ```
 
 
+### Corrections for CoMMs (Yang et al.)
+In Algorithm 1 (in the supplementary document), the Reduction-step should be $\left( \sigma_u^{(t+1)}\right)^2 = \left( \gamma^{(t+1)}\right)^2\left( \sigma_u^{(t+1)}\right)^2$. 

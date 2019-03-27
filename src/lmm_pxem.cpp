@@ -4,7 +4,7 @@ using namespace Rcpp;
 using namespace arma;
 using namespace std;
 
-void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, const double& tol, const int& maxIter,
+/*void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, const int& maxIter,
                   double& sigma2y, double& sigma2beta, arma::vec& beta0, double& loglik_max,
                   int& iteration, arma::mat& Sigb, arma::vec& mub){
   if (y.n_elem != X.n_rows || X.n_rows != W.n_rows){
@@ -26,16 +26,14 @@ void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, co
     perror("The dimensions in covariates are not matched in Sigb");
   }
 
-  mat XtX = X.t()*X, WtW = W.t()*W, XtW = X.t()*W;
+  mat WtW = W.t()*W, XtW = X.t()*W;
   vec Xty = X.t()*y, Wty = W.t()*y;
   double gam, gam2;  // parameter expansion
 
-  vec dd;
-  mat uu;
-
-  eig_sym(dd, uu, XtX);
-
-  mat wtxu = W.t()*X*uu; //q-by-p
+  //vec dd;
+  //dd.zeros(n);
+  //mat uu(p,p);
+  //eig_sym(dd, uu, XtX);
 
   vec dd2;
   mat uu2;
@@ -44,13 +42,19 @@ void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, co
 
   eig_sym(dd2, uu2, XXt);
 
-  vec Cm(p), Cs(p), Cm2(p);
+  //dd.subvec(0,n-1) = dd2;
+  mat uu(p,n);
+  uu = X.t()*uu2/repmat(sqrt(dd2.t()),p,1);  //p-by-n, uu*dd2*uut = xtx
+
+  mat wtxu = W.t()*X*uu; //q-by-n
+
+  vec Cm(n), Cs(n);//, Cm2(n);
   vec loglik(maxIter);
-  vec utxty(p), utxty2(p), utxty2Cm(p), utxty2Cm2(p);
+  vec utxty(n), utxty2(n), utxty2Cm(n), utxty2Cm2(n);
   vec yt(n), yt2(n);
 
   // evaluate loglik at initial values
-  vec uty = uu2.t()*(y - W * beta0);
+  vec uty = uu2.t()*(y - W * beta0); //n-by-1
 
   vec tmpy = uty / sqrt(dd2 * sigma2beta + sigma2y);
   vec tmpy2 = pow(tmpy,2);
@@ -59,17 +63,17 @@ void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, co
   int Iteration = 1;
   for (int iter = 2; iter <= maxIter; iter ++ ) {
     // E-step
-    Cm = sigma2y / sigma2beta +  dd;
-    Cs = 1 / sigma2beta +  dd / sigma2y;
-    Cm2 = pow(Cm , 2);
+    Cm = sigma2y / sigma2beta +  dd2;
+    Cs = 1 / sigma2beta +  dd2 / sigma2y;
+    //Cm2 = pow(Cm , 2);
     // M-step
-    utxty = uu.t() * (Xty - XtW * beta0); // p-by-1
+    utxty = uu.t() * (Xty - XtW * beta0); // n-by-1
     utxty2 = pow(utxty, 2);
 
     utxty2Cm = utxty % utxty / Cm;
     utxty2Cm2 = utxty2Cm/Cm;
 
-    gam = sum(utxty2Cm) / ( sum(dd % utxty2Cm2) + sum(dd / Cs));
+    gam = sum(utxty2Cm) / ( sum(dd2 % utxty2Cm2) + sum(dd2 / Cs));
     gam2 = pow(gam , 2);
 
     //sigma2beta = ( sum(utxty.t() * diagmat(1 / Cm2) * utxty) + sum(1 / Cs)) / p;
@@ -77,7 +81,7 @@ void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, co
 
     yt = y - W*beta0;
     yt2 = pow(yt , 2);
-    sigma2y = (sum(yt2) - 2 * sum(utxty2Cm) * gam + sum(utxty2Cm2 % dd) * gam2 + gam2 * sum(dd / Cs)) / n;
+    sigma2y = (sum(yt2) - 2 * sum(utxty2Cm) * gam + sum(utxty2Cm2 % dd2) * gam2 + gam2 * sum(dd2 / Cs)) / n;
 
     beta0 = solve(WtW, Wty - gam2 * (wtxu * (utxty / Cm)));
 
@@ -95,14 +99,14 @@ void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, co
     }
 
     Iteration = iter;
-    if (abs(loglik(iter - 1) - loglik(iter - 2)) < 1e-5) {
+    if (abs(loglik(iter - 1) - loglik(iter - 2)) < 1e-10) {
 
       break;
     }
   }
 
-  Cm = sigma2y / sigma2beta + dd;
-  Cs = 1 / sigma2beta + dd / sigma2y;
+  Cm = sigma2y / sigma2beta + dd2;
+  Cs = 1 / sigma2beta + dd2 / sigma2y;
   Sigb = uu*diagmat(1 / Cs)*uu.t();
   mub = uu * (utxty / Cm);
 
@@ -112,7 +116,7 @@ void lmm_pxem_jin(const arma::vec& y, const arma::mat& W, const arma::mat& X, co
 
   loglik_max = loglik(to);
   iteration = Iteration -1;
-}
+}*/
 
 void lmm_pxem_ptr2(const arma::vec& y, const arma::mat& W, const arma::mat& X,  const int& maxIter,
               double& sigma2y, double& sigma2beta, arma::vec& beta0, double& loglik_max,
@@ -260,7 +264,7 @@ void lmm_pxem_ptr2(const arma::vec& y, const arma::mat& W, const arma::mat& X,  
 // [[Rcpp::export]]
 Rcpp::List lmm_pxem2(const arma::vec y, const arma::mat w, const arma::mat x, const int maxIter){
 
-    double sigma2y, sigma2beta, loglik;
+    double sigma2y = var(y)/2, sigma2beta = var(y)/2, loglik;
     vec beta0 =zeros<vec>(w.n_cols);
     int iter;
     mat Sigb = zeros<mat>(x.n_cols,x.n_cols);

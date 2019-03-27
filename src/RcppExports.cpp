@@ -75,6 +75,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// lmm_pxem_test
+Rcpp::List lmm_pxem_test(const arma::vec y, const arma::mat w, const arma::mat x, const int maxIter);
+RcppExport SEXP _CoMM_lmm_pxem_test(SEXP ySEXP, SEXP wSEXP, SEXP xSEXP, SEXP maxIterSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const arma::mat >::type w(wSEXP);
+    Rcpp::traits::input_parameter< const arma::mat >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const int >::type maxIter(maxIterSEXP);
+    rcpp_result_gen = Rcpp::wrap(lmm_pxem_test(y, w, x, maxIter));
+    return rcpp_result_gen;
+END_RCPP
+}
 // lmm_pxem2
 Rcpp::List lmm_pxem2(const arma::vec y, const arma::mat w, const arma::mat x, const int maxIter);
 RcppExport SEXP _CoMM_lmm_pxem2(SEXP ySEXP, SEXP wSEXP, SEXP xSEXP, SEXP maxIterSEXP) {
@@ -95,6 +109,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_CoMM_CoMM_testing_run_mt", (DL_FUNC) &_CoMM_CoMM_testing_run_mt, 8},
     {"_CoMM_CoMM_testing_run", (DL_FUNC) &_CoMM_CoMM_testing_run, 7},
     {"_CoMM_lmm_pxem", (DL_FUNC) &_CoMM_lmm_pxem, 4},
+    {"_CoMM_lmm_pxem_test", (DL_FUNC) &_CoMM_lmm_pxem_test, 4},
     {"_CoMM_lmm_pxem2", (DL_FUNC) &_CoMM_lmm_pxem2, 4},
     {NULL, NULL, 0}
 };

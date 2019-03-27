@@ -158,7 +158,7 @@ CoMM_testing_run <- function(stringname1, stringname2, stringname3, stringname4,
 #' L = 1; M = 100; rho =0.5
 #' n1 = 350; n2 = 5000;
 #' X <- matrix(rnorm((n1+n2)*M),nrow=n1+n2,ncol=M);
-#' 
+#'
 #' beta_prop = 0.2;
 #' b = numeric(M);
 #' m = M * beta_prop;
@@ -187,6 +187,10 @@ CoMM_testing_run <- function(stringname1, stringname2, stringname3, stringname4,
 #' @export
 lmm_pxem <- function(y, w, x, maxIter) {
     .Call('_CoMM_lmm_pxem', PACKAGE = 'CoMM', y, w, x, maxIter)
+}
+
+lmm_pxem_test <- function(y, w, x, maxIter) {
+    .Call('_CoMM_lmm_pxem_test', PACKAGE = 'CoMM', y, w, x, maxIter)
 }
 
 #' @author Jin Liu, \email{jin.liu@duke-nus.edu.sg}
