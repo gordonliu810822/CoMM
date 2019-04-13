@@ -29,11 +29,13 @@ All the simulation results can be reproduced by using the code at [simulation](h
 
 References
 ==========
-Can Yang<sup>c</sup>, 
+1. Can Yang<sup>c</sup>,
 Xiang Wan<sup>c</sup>, 
 Xinyi Lin, Mengjie Chen, Xiang Zhou, 
 Jin Liu<sup>+</sup>. (2018) [CoMM: a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty865/5123355).
-
+2. Yi Yang, Xingjie Shi, Yuling Jiao, Jian Huang, Min Chen, Xiang Zhou, Lei Sun, Xinyi Lin, Can Yang, Jin Liu<sup>+</sup>. (2019) [CoMM-S^2: a collaborative mixed model using
+summary statistics in transcriptome-wide
+association studies]
 
 Development
 ===========
