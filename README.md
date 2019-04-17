@@ -26,6 +26,11 @@ Reproducing Results of Yang et al. (2018)
 ===========
 All the simulation results can be reproduced by using the code at [simulation](https://github.com/gordonliu810822/CoMM/tree/master/simulation). Before running simulation to reproduce the results, please familarize yourself with CoMM using ['CoMM' vignette](https://github.com/gordonliu810822/CoMM/blob/master/vignettes/CoMM.pdf). Simulation results can be reproduced using [simulation.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/simulation.R) with a batch script [nscc_sim.txt](https://github.com/gordonliu810822/CoMM/blob/master/simulation/nscc_sim.txt). 
 
+Reproducing Results of Yang et al. (2019)
+===========
+The simulation results of CoMM-S<sup>2</sup> can be reproduced by the code of file in the [simulation](https://github.com/gordonliu810822/CoMM/tree/master/simulation). The introduction of usage of CoMM-S<sup>2</sup> is in the ['CoMM' vignette](https://github.com/gordonliu810822/CoMM/blob/master/vignettes/CoMM.pdf), please refer to the code file of CoMM-S<sup>2</sup> [CoMM_ S2_ simulation_power.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S2_simulation_power.R) and [CoMM_ S2_ simulation_t1e.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S2_simulation_t1e.R) in the vignette to reproduce the simulation results.
+
+
 
 References
 ==========
