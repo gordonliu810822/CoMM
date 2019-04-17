@@ -28,7 +28,7 @@ All the simulation results can be reproduced by using the code at [simulation](h
 
 Reproducing Results of Yang et al. (2019)
 ===========
-The simulation results of CoMM-S<sup>2</sup> can be reproduced by the code of file in the [simulation](https://github.com/gordonliu810822/CoMM/tree/master/simulation). The introduction of usage of CoMM-S<sup>2</sup> is in the ['CoMM' vignette](https://github.com/gordonliu810822/CoMM/blob/master/vignettes/CoMM.pdf), please refer to the code file of CoMM-S<sup>2</sup> [CoMM_ S2_ simulation_power.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S2_simulation_power.R) and [CoMM_ S2_ simulation_t1e.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S2_simulation_t1e.R) in the vignette to reproduce the simulation results.
+The simulation results of CoMM-S<sup>2</sup> can be reproduced by the code of file in the [simulation](https://github.com/gordonliu810822/CoMM/tree/master/simulation). The introduction of usage of CoMM-S<sup>2</sup> is in the ['CoMM' vignette](https://github.com/gordonliu810822/CoMM/blob/master/vignettes/CoMM.pdf), please refer to the code file of CoMM-S<sup>2</sup> [CoMM_ S2_ simulation_power.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S2_simulation_power.R) and [CoMM_ S2_ simulation_t1e.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S2_simulation_t1e.R) in the vignette to reproduce the simulation results. The excel tables for the results of analysis of 14 GWAS summary statistics can be found at  [gene_significance4_centering_excel.zip](https://github.com/gordonliu810822/CoMM/blob/master/Results/gene_significance4_centering_excel.zip)
 
 
 
