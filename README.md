@@ -43,4 +43,4 @@ Jin Liu<sup>+</sup>. (2018) [CoMM: a collaborative mixed model to dissecting gen
 Development
 ===========
 
-This package is developed and maintained by Jin Liu (jin.liu@duke-nus.edu.sg).
+This package is developed and maintained by Jin Liu (jin.liu@duke-nus.edu.sg) and Yi Yang (gmsyany@duke-nus.edu.sg).
