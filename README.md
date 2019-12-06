@@ -38,7 +38,7 @@ References
 Xiang Wan<sup>c</sup>, 
 Xinyi Lin, Mengjie Chen, Xiang Zhou, 
 Jin Liu<sup>+</sup>. (2018) [CoMM: a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/bty865/5123355), Bioinformatics, 35(10), 1644–1652.
-2. Yi Yang, Xingjie Shi, Yuling Jiao, Jian Huang, Min Chen, Xiang Zhou, Lei Sun, Xinyi Lin, Can Yang, Jin Liu<sup>+</sup>. (2019) [CoMM-S<sup>2</sup>: a collaborative mixed model using summary statistics in transcriptome-wide association studies](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz880/5637753).
+2. Yi Yang, Xingjie Shi, Yuling Jiao, Jian Huang, Min Chen, Xiang Zhou, Lei Sun, Xinyi Lin, Can Yang, Jin Liu<sup>+</sup>. (2019) [CoMM-S<sup>2</sup>: a collaborative mixed model using summary statistics in transcriptome-wide association studies](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz880/5637753), Bioinformatics, btz880.
 
 Development
 ===========
