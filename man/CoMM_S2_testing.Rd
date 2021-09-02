@@ -20,7 +20,7 @@ CoMM_S2_testing(stringname1, stringname2, stringname3, stringname4,
 
 \item{bw}{the number of downstream and upstream SNPs that are considered as cis-SNP within a gene.}
 
-\item{lam}{shirnkage intensify for reference panel}
+\item{lam}{shirnkage intensity for reference panel}
 
 }
 \value{

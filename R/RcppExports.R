@@ -9,6 +9,22 @@ CoMM_S2_testing <- function(stringname1, stringname2, stringname3, stringname4, 
     .Call('_CoMM_CoMM_S2_testing', PACKAGE = 'CoMM', stringname1, stringname2, stringname3, stringname4, stringname5, bw, lam, alpha)
 }
 
+CoMM_S4 <- function(hatmur, hatmu2r, Rr, R2r, opts = NULL, px = 1L) {
+    .Call('_CoMM_CoMM_S4', PACKAGE = 'CoMM', hatmur, hatmu2r, Rr, R2r, opts, px)
+}
+
+read_eqtls <- function(filename, P) {
+    .Call('_CoMM_read_eqtls', PACKAGE = 'CoMM', filename, P)
+}
+
+CoMM_S4_testing <- function(stringname1, stringname2, stringname3, stringname4, stringname5, px = 1L, lam = 0.95) {
+    .Call('_CoMM_CoMM_S4_testing', PACKAGE = 'CoMM', stringname1, stringname2, stringname3, stringname4, stringname5, px, lam)
+}
+
+CoMM_S4_testing_mt <- function(stringname1, stringname2, stringname3, stringname4, stringname5, px = 1L, lam = 0.95, coreNum = 24L) {
+    .Call('_CoMM_CoMM_S4_testing_mt', PACKAGE = 'CoMM', stringname1, stringname2, stringname3, stringname4, stringname5, px, lam, coreNum)
+}
+
 #' @author Jin Liu, \email{jin.liu@duke-nus.edu.sg}
 #' @title
 #' CoMM

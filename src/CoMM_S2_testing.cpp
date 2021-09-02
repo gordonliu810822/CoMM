@@ -139,7 +139,6 @@ void T2AG2C(uvec& A31_){
 }
 
 
-
 Rcpp::List getColNum_Header2(std::string filename, char delimiter){
 	//cout << "Count columns in the file: ";
 
@@ -964,6 +963,8 @@ List CoMM_S2_testing(std::string stringname1, std::string stringname2, std::stri
 
 		int Mg = X3tmp.n_cols;
 
+		cout << "Info: the number of snps for " << g << "-th gene is " << Mg << endl;
+
 		uvec idx_col1 = zeros<uvec>(1);
 		uvec idx_col2 = ones<uvec>(1);
 		vec hatmu2 = GWAS_sum(idxinFile2(idx), idx_col1);
@@ -1023,6 +1024,7 @@ List CoMM_S2_testing(std::string stringname1, std::string stringname2, std::stri
 
 		if ((g + 1) % 100 == 0 && (g + 1) != 0){
 			cout << g + 1 << "-th Gene starts working ..." << endl;
+			cout << "Elapsed time is " << (clock() - t1)*1.0 / CLOCKS_PER_SEC << " sec" << endl;
 		}
 
 	}

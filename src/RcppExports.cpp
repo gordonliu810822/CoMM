@@ -42,6 +42,69 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// CoMM_S4
+List CoMM_S4(arma::vec& hatmur, arma::vec& hatmu2r, arma::mat& Rr, arma::mat& R2r, SEXP opts, bool px);
+RcppExport SEXP _CoMM_CoMM_S4(SEXP hatmurSEXP, SEXP hatmu2rSEXP, SEXP RrSEXP, SEXP R2rSEXP, SEXP optsSEXP, SEXP pxSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec& >::type hatmur(hatmurSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type hatmu2r(hatmu2rSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type Rr(RrSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type R2r(R2rSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type opts(optsSEXP);
+    Rcpp::traits::input_parameter< bool >::type px(pxSEXP);
+    rcpp_result_gen = Rcpp::wrap(CoMM_S4(hatmur, hatmu2r, Rr, R2r, opts, px));
+    return rcpp_result_gen;
+END_RCPP
+}
+// read_eqtls
+List read_eqtls(std::string filename, int P);
+RcppExport SEXP _CoMM_read_eqtls(SEXP filenameSEXP, SEXP PSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type filename(filenameSEXP);
+    Rcpp::traits::input_parameter< int >::type P(PSEXP);
+    rcpp_result_gen = Rcpp::wrap(read_eqtls(filename, P));
+    return rcpp_result_gen;
+END_RCPP
+}
+// CoMM_S4_testing
+List CoMM_S4_testing(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4, std::string stringname5, bool px, double lam);
+RcppExport SEXP _CoMM_CoMM_S4_testing(SEXP stringname1SEXP, SEXP stringname2SEXP, SEXP stringname3SEXP, SEXP stringname4SEXP, SEXP stringname5SEXP, SEXP pxSEXP, SEXP lamSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type stringname1(stringname1SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname2(stringname2SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname3(stringname3SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname4(stringname4SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname5(stringname5SEXP);
+    Rcpp::traits::input_parameter< bool >::type px(pxSEXP);
+    Rcpp::traits::input_parameter< double >::type lam(lamSEXP);
+    rcpp_result_gen = Rcpp::wrap(CoMM_S4_testing(stringname1, stringname2, stringname3, stringname4, stringname5, px, lam));
+    return rcpp_result_gen;
+END_RCPP
+}
+// CoMM_S4_testing_mt
+List CoMM_S4_testing_mt(std::string stringname1, std::string stringname2, std::string stringname3, std::string stringname4, std::string stringname5, bool px, double lam, int coreNum);
+RcppExport SEXP _CoMM_CoMM_S4_testing_mt(SEXP stringname1SEXP, SEXP stringname2SEXP, SEXP stringname3SEXP, SEXP stringname4SEXP, SEXP stringname5SEXP, SEXP pxSEXP, SEXP lamSEXP, SEXP coreNumSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type stringname1(stringname1SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname2(stringname2SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname3(stringname3SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname4(stringname4SEXP);
+    Rcpp::traits::input_parameter< std::string >::type stringname5(stringname5SEXP);
+    Rcpp::traits::input_parameter< bool >::type px(pxSEXP);
+    Rcpp::traits::input_parameter< double >::type lam(lamSEXP);
+    Rcpp::traits::input_parameter< int >::type coreNum(coreNumSEXP);
+    rcpp_result_gen = Rcpp::wrap(CoMM_S4_testing_mt(stringname1, stringname2, stringname3, stringname4, stringname5, px, lam, coreNum));
+    return rcpp_result_gen;
+END_RCPP
+}
 // CoMM_covar_pxem
 List CoMM_covar_pxem(const arma::vec& y, const arma::vec& z, const arma::mat& x1, const arma::mat& x2, const arma::mat& w1, const arma::mat& w2, const int constr, const double epsStopLogLik, const int maxIter, const int pxem_indicator);
 RcppExport SEXP _CoMM_CoMM_covar_pxem(SEXP ySEXP, SEXP zSEXP, SEXP x1SEXP, SEXP x2SEXP, SEXP w1SEXP, SEXP w2SEXP, SEXP constrSEXP, SEXP epsStopLogLikSEXP, SEXP maxIterSEXP, SEXP pxem_indicatorSEXP) {
@@ -161,6 +224,10 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_CoMM_CoMM_S2_paral_testing", (DL_FUNC) &_CoMM_CoMM_S2_paral_testing, 8},
     {"_CoMM_CoMM_S2_testing", (DL_FUNC) &_CoMM_CoMM_S2_testing, 8},
+    {"_CoMM_CoMM_S4", (DL_FUNC) &_CoMM_CoMM_S4, 6},
+    {"_CoMM_read_eqtls", (DL_FUNC) &_CoMM_read_eqtls, 2},
+    {"_CoMM_CoMM_S4_testing", (DL_FUNC) &_CoMM_CoMM_S4_testing, 7},
+    {"_CoMM_CoMM_S4_testing_mt", (DL_FUNC) &_CoMM_CoMM_S4_testing_mt, 8},
     {"_CoMM_CoMM_covar_pxem", (DL_FUNC) &_CoMM_CoMM_covar_pxem, 10},
     {"_CoMM_CoMM_testing_run_mt", (DL_FUNC) &_CoMM_CoMM_testing_run_mt, 8},
     {"_CoMM_CoMM_testing_run", (DL_FUNC) &_CoMM_CoMM_testing_run, 7},
