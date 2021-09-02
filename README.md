@@ -51,6 +51,6 @@ This package is developed and maintained by Yi Yang (gmsyany@nus.edu.sg) and Jin
 
 # Demonstration
 
-For an example of typical CoMM usage, please see our [Package vignette](https://shufeyangyi2015310117.github.io/CoMM/) for a demonstration and overview of the functions included in CoMM.
+For an example of typical CoMM usage, please see our [Package vignette](https://gordonliu810822.github.io/CoMM/) for a demonstration and overview of the functions included in CoMM.
 
 
