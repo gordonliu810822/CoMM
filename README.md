@@ -10,7 +10,7 @@ To install the development version of CoMM, it's easiest to use the 'devtools' p
 ```
 #install.packages("devtools")
 library(devtools)
-install_github("Shufeyangyi2015310117/CoMM")
+install_github("gordonliu810822/CoMM")
 ```
 
 Usage
@@ -32,7 +32,7 @@ The simulation results of CoMM-S<sup>2</sup> can be reproduced by the code of fi
 
 Reproducing Results of Yang et al. (2021)
 ===========
-The simulation results of CoMM-S<sup>4</sup> can be reproduced by the code of file in the [simulation](https://github.com/Shufeyangyi2015310117/CoMM/tree/master/simulation). The introduction of usage of CoMM-S<sup>4</sup> is in the ['CoMM' vignette](https://github.com/Shufeyangyi2015310117/CoMM/blob/master/vignettes/CoMM.pdf), please refer to the code file of CoMM-S<sup>4</sup> [CoMM_ S4_ simulation_power.R](https://github.com/Shufeyangyi2015310117/CoMM/blob/master/simulation/CoMM_S4_simulation_power.R) and [CoMM_ S4_ simulation_t1e.R](https://github.com/Shufeyangyi2015310117/CoMM/blob/master/simulation/CoMM_S4_simulation_t1e.R) in the vignette to reproduce the simulation results. 
+The simulation results of CoMM-S<sup>4</sup> can be reproduced by the code of file in the [simulation](https://github.com/gordonliu810822/CoMM/tree/master/simulation). The introduction of usage of CoMM-S<sup>4</sup> is in the ['CoMM' vignette](https://github.com/gordonliu810822/CoMM/blob/master/vignettes/CoMM.pdf), please refer to the code file of CoMM-S<sup>4</sup> [CoMM_ S4_ simulation_power.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S4_simulation_power.R) and [CoMM_ S4_ simulation_t1e.R](https://github.com/gordonliu810822/CoMM/blob/master/simulation/CoMM_S4_simulation_t1e.R) in the vignette to reproduce the simulation results. 
 
 
 References
