@@ -74,7 +74,7 @@
       <h1 data-toc-skip>CoMM: a collaborative mixed model to dissecting genetic contributions to complex traits by leveraging regulatory information</h1>
                         <h4 class="author">Jin Liu</h4>
             
-            <h4 class="date">2021-08-31</h4>
+            <h4 class="date">2021-09-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/gordonliu810822/CoMM/blob/master/vignettes/CoMM.Rmd"><code>vignettes/CoMM.Rmd</code></a></small>
       <div class="hidden name"><code>CoMM.Rmd</code></div>
@@ -704,7 +704,7 @@
 <div id="fit-comm_s4-using-eqtl-and-gwas-summary-statistics" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fit-comm_s4-using-eqtl-and-gwas-summary-statistics" class="anchor"></a>Fit CoMM_S4 using eQTL and GWAS summary statistics</h3>
-<p>The example of running TransCoMM_S2 using eQTL summary statistics and GWAS summary statistics</p>
+<p>The example of running CoMM_S4 using eQTL summary statistics and GWAS summary statistics</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">stringname1</span> <span class="op">=</span> <span class="st">"cis-eQTLs_full_chr1_1-100000.txt"</span>;
 <span class="va">stringname2</span> <span class="op">=</span> <span class="st">"NFBC_ph1_beta_se.txt"</span>
@@ -950,12 +950,12 @@
 </tr>
 </tbody>
 </table>
-<p>One point we have to explain is that this file must contain all the SNP information of eQTL summary statistics. Furthermore, to speed up model ‘TransCoMM_S2’, we implement multiple threads version of ‘TransCoMM_S2’ by just running <code>fm = TransCoMM_S2_testing_mt(stringname1, stringname2, stringname3, stringname4, stringname5, px, lam, coreNum);</code></p>
+<p>One point we have to explain is that this file must contain all the SNP information of eQTL summary statistics. Furthermore, to speed up model ‘CoMM_S4’, we implement multiple threads version of ‘CoMM_S4’ by just running <code>fm = CoMM_S4_testing_mt(stringname1, stringname2, stringname3, stringname4, stringname5, px, lam, coreNum);</code></p>
 </div>
 <div id="comm-a-unified-function-to-dissect-genetic-contributions-to-complex-traits-by-leveraging-regulatory-information" class="section level3">
 <h3 class="hasAnchor">
 <a href="#comm-a-unified-function-to-dissect-genetic-contributions-to-complex-traits-by-leveraging-regulatory-information" class="anchor"></a>CoMM: a unified function to dissect genetic contributions to complex traits by leveraging regulatory information</h3>
-<p>The general form of CoMM is CoMM(Model, file1, file2, file3, file4, file5, file6, Cov1, Cov2, R1, R2, whCol, bw, lam, paral, coreNum). In fact, The function CoMM is the combination of CoMM_testing_run, CoMM_S2_testing and TransCoMM_S2_testing to facilitate the usage of these functions. Firstly, we describe the parameters used in the function CoMM in detail.</p>
+<p>The general form of CoMM is CoMM(Model, file1, file2, file3, file4, file5, file6, Cov1, Cov2, R1, R2, whCol, bw, lam, paral, coreNum). In fact, The function CoMM is the combination of CoMM_testing_run, CoMM_S2_testing and CoMM_S4_testing to facilitate the usage of these functions. Firstly, we describe the parameters used in the function CoMM in detail.</p>
 <p>Model</p>
 <p>The type of model specified by the user. It is a character which has four values, “Individual”, “Summary”, “Trans” and “Shared”. “Individual” stands for the model using both individual-level transcriptome and GWAS dataset. “Summary” stands for the model using individual-level transcriptome but summary-level GWAS dataset. “Trans” stands for the model using both summary-level transcriptome and GWAS dataset with different reference panels. “Shared” stands for the model using both summary-level transcriptome and GWAS dataset with the same reference panel. The default value is “Individual”.</p>
 <p>file1</p>

@@ -4,8 +4,8 @@ title: 'CoMM: a collaborative mixed model to dissecting genetic contributions to
 author: "Jin Liu"
 date: '`r Sys.Date()`'
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 vignette: |
   %\VignetteIndexEntry{Vignette Title} %\VignetteEngine{knitr::rmarkdown} %\VignetteEncoding{UTF-8}
 ---
@@ -448,7 +448,7 @@ The output of CoMM_S4 is a list with 5 variables, mean of variational distributi
 
 ### Fit CoMM_S4 using eQTL and GWAS summary statistics
 
-The example of running TransCoMM_S2 using eQTL summary statistics and GWAS summary statistics
+The example of running CoMM_S4 using eQTL summary statistics and GWAS summary statistics
 ```{r}
 stringname1 = "cis-eQTLs_full_chr1_1-100000.txt";
 stringname2 = "NFBC_ph1_beta_se.txt"
@@ -478,11 +478,11 @@ At last, the corresponding file with all the information of SNPs in eQTL summary
 knitr::kable(bim2)
 ```
 
-One point we have to explain is that this file must contain all the SNP information of eQTL summary statistics. Furthermore, to speed up model 'TransCoMM_S2', we implement multiple threads version of 'TransCoMM_S2' by just running `fm = TransCoMM_S2_testing_mt(stringname1, stringname2, stringname3, stringname4, stringname5, px, lam, coreNum);` 
+One point we have to explain is that this file must contain all the SNP information of eQTL summary statistics. Furthermore, to speed up model 'CoMM_S4', we implement multiple threads version of 'CoMM_S4' by just running `fm = CoMM_S4_testing_mt(stringname1, stringname2, stringname3, stringname4, stringname5, px, lam, coreNum);` 
 
 
 ### CoMM: a unified function to dissect genetic contributions to complex traits by leveraging regulatory information
-The general form of CoMM is CoMM(Model, file1, file2, file3, file4, file5, file6, Cov1, Cov2, R1, R2, whCol, bw, lam, paral, coreNum). In fact, The function CoMM is the combination of CoMM_testing_run, CoMM_S2_testing and TransCoMM_S2_testing to facilitate the usage of these functions. Firstly, we describe the parameters used in the function CoMM in detail.
+The general form of CoMM is CoMM(Model, file1, file2, file3, file4, file5, file6, Cov1, Cov2, R1, R2, whCol, bw, lam, paral, coreNum). In fact, The function CoMM is the combination of CoMM_testing_run, CoMM_S2_testing and CoMM_S4_testing to facilitate the usage of these functions. Firstly, we describe the parameters used in the function CoMM in detail.
 
 Model
 
