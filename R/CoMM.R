@@ -60,8 +60,7 @@ CoMM <- function(Model = "Individual", file1 = NULL, file2 = NULL, file3 = NULL,
         Cov2 = ""
       }
       .Call('_CoMM_CoMM_testing_run_mt', PACKAGE = 'CoMM', file1, file3, file2, Cov1, Cov2, whCol, bw, coreNum)
-    }
-    if (paral == FALSE){
+    }else{
       if (is.null(Cov1)){
         Cov1 = ""
       }
@@ -71,10 +70,7 @@ CoMM <- function(Model = "Individual", file1 = NULL, file2 = NULL, file3 = NULL,
       .Call('_CoMM_CoMM_testing_run', PACKAGE = 'CoMM', file1, file3, file2, Cov1, Cov2, whCol, bw)
     }
     
-  }
-  
-  ## Model Summary
-  if (Model == "Summary"){
+  }else if (Model == "Summary"){
     if (is.null(file1)){
       stop("Require transcriptome genotype file: file1")
     }
@@ -93,19 +89,14 @@ CoMM <- function(Model = "Individual", file1 = NULL, file2 = NULL, file3 = NULL,
         Cov1 = ""
       }
      .Call('_CoMM_CoMM_S2_paral_testing', PACKAGE = 'CoMM', file1, file6, R2, file2, Cov1, bw, lam, coreNum)
-    }
-    
-    if (paral == FALSE){
+    }else{
       if (is.null(Cov1)){
         Cov1 = ""
       }
       .Call('_CoMM_CoMM_S2_testing', PACKAGE = 'CoMM', file1, file6, R2, file2, Cov1, bw, lam, 0)
     }
     
-  }
-
-
-  if (Model == "Trans"){
+  }else if (Model == "Trans"){
     if (is.null(file4)){
       stop("Require summmary-level eQTL file: file4")
     }
@@ -123,16 +114,11 @@ CoMM <- function(Model = "Individual", file1 = NULL, file2 = NULL, file3 = NULL,
     }
     if (paral == TRUE){
       .Call('_CoMM_CoMM_S4_testing_mt', PACKAGE = 'CoMM', file4, file6, R1, file5, R2, 1, lam, coreNum)
-    }
-    
-    if (paral == FALSE){
+    }else{
       .Call('_CoMM_CoMM_S4_testing', PACKAGE = 'CoMM', file4, file6, R1, file5, R2, 1, lam)
     }
     
-  }
-  
-
-  if (Model == "Shared"){
+  }else if (Model == "Shared"){
     if (is.null(file4)){
       stop("Require summmary-level eQTL file: file4")
     }
@@ -147,14 +133,10 @@ CoMM <- function(Model = "Individual", file1 = NULL, file2 = NULL, file3 = NULL,
     }
     if (paral == TRUE){
       .Call('_CoMM_CoMM_S4_testing_mt', PACKAGE = 'CoMM', file4, file6, R1, file5, R1, 1, lam, coreNum)
-    }
-    
-    if (paral == FALSE){
+    }else{
       .Call('_CoMM_CoMM_S4_testing', PACKAGE = 'CoMM', file4, file6, R1, file5, R1, 1, lam)
     }
-  }
-   
-  if (Model != "Individual" && Model != "Summary" && Model != "Trans" && Model != "Shared"){
+  }else{
     print("Wrong Model name, please specify the right Model name: Individual, Summary, Trans or Shared")
   }
 
